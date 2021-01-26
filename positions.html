@@ -1,11 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      li {
+        display: inline;
+      }
+    </style>
     <title>Positions</title>
-</head>
-<body>
+  </head>
+
+  <body>
     <h1>Positions</h1>
-</body>
+    <nav>
+      <ul>
+        <li><a href="departments.html">departments</a></li>
+        <li><a href="positions.html">positions</a></li>
+      </ul>
+    </nav>
+
+    <div id="myform">
+      <table>
+        <tr>
+          <td>positionID:</td>
+          <td><input type="text" id="positionID" /></td>
+        </tr>
+        <tr>
+          <td>title:</td>
+          <td><input type="text" id="title" /></td>
+        </tr>
+        <tr>
+          <td>salaryTier:</td>
+          <td>
+            <input type="text" id="salaryTier" />
+          </td>
+        </tr>
+        <!-- <tr> -->
+        <!-- <td>&nbsp;</td> -->
+        <!-- <td>&nbsp;</td> -->
+        <!-- </tr> -->
+        <td>
+          <input type="button" id="add" value="Add" onclick="addRow()" />
+        </td>
+      </table>
+    </div>
+    <div id="mydata">
+      <table id="myTableData" border="1" cellpadding="2">
+        <tr>
+          <!-- <td>&nbsp;</td> -->
+          <td><b>positionID</b></td>
+          <td><b>title</b></td>
+          <td><b>salaryTier</b></td>
+        </tr>
+      </table>
+      &nbsp;
+    </div>
+
+    <script>
+      function addRow() {
+        var positionID = document.getElementById("positionID");
+        var title = document.getElementById("title");
+        var salaryTier = document.getElementById("salaryTier");
+        var table = document.getElementById("myTableData");
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        row.insertCell(0).innerHTML = positionID.value;
+        row.insertCell(1).innerHTML = title.value;
+        row.insertCell(2).innerHTML = salaryTier.value;
+        row.insertCell(3).innerHTML =
+          '<input type="button" value = "Update" onClick=updateRow(this)>';
+        row.insertCell(4).innerHTML =
+          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
+      }
+
+      function deleteRow(obj) {
+        var index = obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("myTableData");
+        table.deleteRow(index);
+      }
+
+      // need function
+      function updateRow(obj) {
+        alert("Still working on it!");
+      }
+    </script>
+  </body>
 </html>

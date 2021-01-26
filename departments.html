@@ -1,11 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      li {
+        display: inline;
+      }
+    </style>
     <title>Departments</title>
-</head>
-<body>
+  </head>
+
+  <body>
     <h1>Departments</h1>
-</body>
+    <nav>
+      <ul>
+        <li><a href="departments.html">departments</a></li>
+        <li><a href="positions.html">positions</a></li>
+      </ul>
+    </nav>
+
+    <div id="myform">
+      <table>
+        <tr>
+          <td>deptID:</td>
+          <td><input type="text" id="deptID" /></td>
+        </tr>
+        <tr>
+          <td>budget:</td>
+          <td><input type="text" id="budget" /></td>
+        </tr>
+        <tr>
+          <td>staffCount:</td>
+          <td>
+            <input type="text" id="staffCount" />
+          </td>
+        </tr>
+        <!-- <tr> -->
+        <!-- <td>&nbsp;</td> -->
+        <!-- <td>&nbsp;</td> -->
+        <!-- </tr> -->
+        <td>
+          <input type="button" id="add" value="Add" onclick="addRow()" />
+        </td>
+      </table>
+    </div>
+    <div id="mydata">
+      <table id="myTableData" border="1" cellpadding="2">
+        <tr>
+          <!-- <td>&nbsp;</td> -->
+          <td><b>deptID</b></td>
+          <td><b>budget</b></td>
+          <td><b>staffCount</b></td>
+        </tr>
+      </table>
+      &nbsp;
+    </div>
+
+    <script>
+      function addRow() {
+        var deptID = document.getElementById("deptID");
+        var budget = document.getElementById("budget");
+        var staffCount = document.getElementById("staffCount");
+        var table = document.getElementById("myTableData");
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+
+        row.insertCell(0).innerHTML = deptID.value;
+        row.insertCell(1).innerHTML = budget.value;
+        row.insertCell(2).innerHTML = staffCount.value;
+        row.insertCell(3).innerHTML =
+          '<input type="button" value = "Update" onClick=updateRow(this)>';
+        row.insertCell(4).innerHTML =
+          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
+      }
+
+      function deleteRow(obj) {
+        var index = obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("myTableData");
+        table.deleteRow(index);
+      }
+
+      // need function
+      function updateRow(obj) {
+        alert("Still working on it!");
+      }
+    </script>
+  </body>
 </html>
