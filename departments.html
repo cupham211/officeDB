@@ -3,58 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="styles.css" />
+
     <title>Departments</title>
   </head>
 
   <body>
-    <h1>Departments</h1>
-
-    <nav>
-      <ul>
-        <li><a href="departments.html">departments</a></li>
-        <li><a href="positions.html">positions</a></li>
-        <li><a href="employee-departments.html">employee-departments</a></li>
-        <li><a href="employee-positions.html">employee-positions</a></li>
-      </ul>
+    <!-- Nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">The Office Universe DB</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a href="departments.html">Departments</a>
+            </li>
+            <li class="nav-item">
+              <a href="positions.html">Positions</a>
+            </li>
+            <li class="nav-item">
+              <a href="employee-departments.html">Employee:Departments</a>
+            </li>
+            <li class="nav-item">
+              <a href="employee-positions.html">Employee:Positions</a>
+            </li>
+            <li class="nav-item">
+              <a href="salary-salaryrange.html">Salary:SalaryRange</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-    <div id="myform">
-      <table>
-        <tr>
-          <td>deptID:</td>
-          <td><input type="text" id="deptID" /></td>
-        </tr>
-        <tr>
-          <td>budget:</td>
-          <td><input type="text" id="budget" /></td>
-        </tr>
-        <tr>
-          <td>staffCount:</td>
-          <td>
-            <input type="text" id="staffCount" />
-          </td>
-        </tr>
+    <h2>Browse all departments</h2>
 
-        <td>
-          <input type="button" id="add" value="Add" onclick="addRow()" />
-        </td>
-      </table>
-    </div>
-    <div id="mydata">
-      <table id="myTableData" border="1" cellpadding="2">
+    <h3>Add another department</h3>
+    <!--Form-->
+    <form>
+      <!--Don't actually need this -->
+
+      <!-- <div class="row mb-3" id="myform">
+        <label for="deptID" class="col-sm-2 col-form-label">deptID</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="deptID" />
+        </div>
+      </div> -->
+
+      <div class="row mb-3" id="myform">
+        <label for="deptName" class="col-sm-2 col-form-label">deptName</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" id="deptName" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="budget" class="col-sm-2 col-form-label">budget</label>
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="budget" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label for="staffCount" class="col-sm-2 col-form-label"
+          >staffCount</label
+        >
+        <div class="col-sm-3">
+          <input type="number" class="form-control" id="staffCount" />
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary" onclick="addRow()">
+        Add
+      </button>
+    </form>
+
+    <!--Data Table-->
+    <table class="table" id="myTableData">
+      <thead>
         <tr>
-          <td><b>deptID</b></td>
-          <td><b>budget</b></td>
-          <td><b>staffCount</b></td>
+          <th scope="col">deptID</th>
+          <th scope="col">deptName</th>
+          <th scope="col">budget</th>
+          <th scope="col">staffCount</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
         </tr>
-      </table>
-      &nbsp;
-    </div>
+      </thead>
+    </table>
 
     <script>
+      var count = 0;
       function addRow() {
-        var deptID = document.getElementById("deptID");
+        // var deptID = document.getElementById("deptID");
+        var deptName = document.getElementById("deptName");
         var budget = document.getElementById("budget");
         var staffCount = document.getElementById("staffCount");
         var table = document.getElementById("myTableData");
@@ -62,13 +119,15 @@
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
 
-        row.insertCell(0).innerHTML = deptID.value;
-        row.insertCell(1).innerHTML = budget.value;
-        row.insertCell(2).innerHTML = staffCount.value;
-        row.insertCell(3).innerHTML =
-          '<input type="button" value = "Update" onClick=updateRow(this)>';
+        row.insertCell(0).innerHTML = count;
+        row.insertCell(1).innerHTML = deptName.value;
+        row.insertCell(2).innerHTML = budget.value;
+        row.insertCell(3).innerHTML = staffCount.value;
         row.insertCell(4).innerHTML =
-          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
+          '<input type="button" value = "Update" onClick=updateRow(this)>';
+        row.insertCell(5).innerHTML =
+          '<input type="button" value = "x" onClick=deleteRow(this)>';
+        count++;
       }
 
       function deleteRow(obj) {
@@ -77,10 +136,71 @@
         table.deleteRow(index);
       }
 
-      // need function
+      // updates row
       function updateRow(obj) {
-        alert("Still working on it!");
+        var index = obj.parentNode.parentNode.rowIndex;
+        var first_item = obj.parentNode.parentNode.firstChild;
+        var second_item = obj.parentNode.parentNode.firstChild.nextSibling;
+        var third_item =
+          obj.parentNode.parentNode.firstChild.nextSibling.nextSibling;
+        var fourth_item =
+          obj.parentNode.parentNode.firstChild.nextSibling.nextSibling
+            .nextSibling;
+        var update =
+          obj.parentNode.parentNode.firstChild.nextSibling.nextSibling
+            .nextSibling.nextSibling;
+        // console.log(first_item);
+        first_item.innerHTML =
+          "<input type='number' id='edit' placeholder=" +
+          first_item.textContent +
+          ">";
+        second_item.innerHTML =
+          "<input type='text' id='edit' placeholder=" +
+          second_item.textContent +
+          ">";
+        third_item.innerHTML =
+          "<input type='number' id='edit' placeholder=" +
+          third_item.textContent +
+          ">";
+        fourth_item.innerHTML =
+          "<input type='number' id='edit' placeholder=" +
+          fourth_item.textContent +
+          ">";
+        update.innerHTML =
+          "<input type='button' value = 'Done' onClick=changeValue(this)>";
+      }
+
+      // updates row
+      // function updateRow(obj) {
+      //   var index = obj.parentNode.parentNode.rowIndex;
+      //   var table = document.getElementById("myTableData"), rIndex, cIndex;
+      //   for (var i = 0; i < table.rows.length; i++)
+      //   {
+      //     for(var j = 0; j < table.rows[i].cells.length; j++)
+      //     {
+      //       table.rows[i].cells[j].onclick = function()
+      //       {
+      //         rIndex = this.parentNode.rowIndex;
+      //         cIndex = this.cellIndex;
+      //         console.log("Row : " + rIndex + " , cell : " + cIndex);
+      //         cIndex.innerHTML = "<input type='number' id='edit'>"
+      //       };
+      //     }
+      //   }
+      // }
+
+      function changeValue(obj) {
+        // var changes = document.getElementById('edit').value;
+        var changes =
+          '<input type="button" value = "Update" onClick=updateRow(this)>';
+        obj.parentNode.innerHTML = changes;
+        // console.log(changes);
       }
     </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

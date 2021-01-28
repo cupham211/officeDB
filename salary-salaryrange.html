@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
-    <title>Employee:Departments</title>
+    <title>Salary:SalaryRange</title>
   </head>
 
   <body>
@@ -54,37 +54,36 @@
       </div>
     </nav>
 
-    <h2>Employee:Departments</h2>
-
-    <h3>List of employees and their departments</h3>
+    <h2>Salary:SalaryRange</h2>
+    <h3>List of Salary Tiers</h3>
     <!--Form-->
     <form>
       <div class="row mb-3" id="myform">
-        <label for="employeeID" class="col-sm-2 col-form-label">employeeID</label>
+        <label for="salaryID" class="col-sm-2 col-form-label">salaryID</label>
         <div class="col-sm-3">
-          <input type="number" class="form-control" id="employeeID" />
+          <input type="number" class="form-control" id="salaryID" />
         </div>
       </div>
       <div class="row mb-3">
-        <label for="deptID" class="col-sm-2 col-form-label">deptID</label>
+        <label for="salaryRange" class="col-sm-2 col-form-label">salaryRange</label>
         <div class="col-sm-3">
-          <input type="number" class="form-control" id="deptID" />
+          <input type="text" class="form-control" id="salaryRange"/>
         </div>
+
       </div>
 
-      <!-- <button type="button" class="btn btn-primary" onclick="addRow()">
+      <button type="button" class="btn btn-primary" onclick="addRow()">
         Add
-      </button> -->
+      </button>
     </form>
 
     <!--Data Table-->
     <h5>Sample Data</h5>
-
     <table class="table" id="myTableData">
       <thead>
         <tr>
-          <th scope="col">employeeID</th>
-          <th scope="col">deptID</th>
+          <th scope="col">salaryID</th>
+          <th scope="col">salaryRange</th>
           <th scope="col">Update</th>
           <th scope="col">Delete</th>
         </tr>
@@ -92,55 +91,43 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td>2</td>
+          <td>27,000-37,000</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>2</td>
-          <td>2</td>
+          <td>30,210-41,500</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>3</td>
-          <td>1</td>
+          <td>37,500-50,960</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>4</td>
-          <td>4</td>
+          <td>40,000-48,739</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>5</td>
-          <td>3</td>
+          <td>45,000-62,200</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>6</td>
-          <td>5</td>
+          <td>55,000-62,000</td>
           <td>Update</td>
           <td>x</td>
         </tr>
         <tr>
           <td>7</td>
-          <td>3</td>
-          <td>Update</td>
-          <td>x</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>7</td>
-          <td>Update</td>
-          <td>x</td>
-        </tr>
-        <tr>
-          <td>9</td>
-          <td>6</td>
+          <td>60,000-80,000</td>
           <td>Update</td>
           <td>x</td>
         </tr>
@@ -149,16 +136,16 @@
 
     <script>
       function addRow() {
-        var employeeID = document.getElementById("employeeID");
-        var deptID = document.getElementById("deptID");
+        var salaryID = document.getElementById("salaryID");
+        var salaryRange = document.getElementById("salaryRange");
         var staffCount = document.getElementById("staffCount");
         var table = document.getElementById("myTableData");
 
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
 
-        row.insertCell(0).innerHTML = employeeID.value;
-        row.insertCell(1).innerHTML = deptID.value;
+        row.insertCell(0).innerHTML = salaryID.value;
+        row.insertCell(1).innerHTML = salaryRange.value;
         row.insertCell(2).innerHTML =
           '<input type="button" value = "Update" onClick=updateRow(this)>';
         row.insertCell(3).innerHTML =
@@ -171,10 +158,21 @@
         table.deleteRow(index);
       }
 
-      // need function
+      // updates row
       function updateRow(obj) {
-        alert("Still working on it!");
+        var index = obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("myTableData");
+        var first_item = obj.parentNode.parentNode.firstChild;
+        var second_item = obj.parentNode.parentNode.firstChild.nextSibling;
+        first_item.innerHTML = "<input type='number' id='edit'/>"+"<input type='button' value='done' onclick='changeValue(this)'/>"
+        second_item.innerHTML = "<input type='number' id='edit'/>"+"<input type='button' value='done' onclick='changeValue(this)'/>"
       }
+
+      function changeValue(obj){
+        var changes = document.getElementById('edit').value;
+        obj.parentNode.textContent = changes;
+      }
+
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
