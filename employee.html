@@ -9,7 +9,7 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="./employee.js"></script>
 
     <title>Employees</title>
   </head>
@@ -31,7 +31,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="nav nav-pills nav-fill">
+          <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
               <a class="nav-link active" href="employee.html">Employees</a>
             </li>
@@ -96,29 +96,30 @@
   </select>
 </div>
 
-  <label for="positionDatalist">Position</label>
-  <div class="input-group mb-3">
-  <input class="form-control" list="positionOptions" id="positionDataList" placeholder="Select or Input new..">
-  <datalist id="positionOptions">
-    <option value="Manager">
-    <option value="HR Generalist">
-    <option value="Salesman">
-    <option value="Accountant">
-    <option value="Quality Assurance">
-  </datalist>
+<div class="input-group mb-3">
+  <label class="input-group-text" for="position">Position</label>
+  <select class="form-select position" id="position">
+    <option selected>Choose..</option>
+    <option value="0">Manager</option>
+    <option value="1">HR Generalist</option>
+    <option value="2">Salesman</option>
+    <option value="3">Intern</option>
+    <option value="4">Accountant</option>
+    <option value="5">NULL</option>
+  </select>
 </div>
 
-<label for="deptDatalist">Department</label>
 <div class="input-group mb-3">
-<input class="form-control" list="deptOptions" id="deptDataList"
-    placeholder="Select or Input new..">
-<datalist id="deptOptions">
-  <option value="Managment">
-  <option value="Administrative">
-  <option value="Sales">
-  <option value="Human Resources">
-  <option value="Customer Service">
-</datalist>
+  <label class="input-group-text" for="department">Department</label>
+  <select class="form-select department" id="department">
+    <option selected>Choose..</option>
+    <option value="0">Management</option>
+    <option value="1">Administrative</option>
+    <option value="2">Sales</option>
+    <option value="3">Customer Service</option>
+    <option value="4">Human Resources</option>
+    <option value="5">NULL</option>
+  </select>
 </div>
 
 <div class="input-group mb-3">
@@ -130,38 +131,37 @@
   </select>
 </div>
 
-<label for="affDatalist">Affiliates</label>
 <div class="input-group mb-3">
-<input class="form-control" list="affOptions" id="affDataList" placeholder="Select or Input new..">
-<datalist id="affOptions">
-  <option value="No other affiliates">
-  <option value="Michael Scott Paper Co">
-  <option value="Scrantonicity">
-  <option value="Vance Refrigeration">
-  <option value="Schrute Farms">
-</datalist>
+  <label class="input-group-text" for="affiliates">Affiliates</label>
+  <select class="form-select affiliates" id="affiliates">
+    <option selected>Choose..</option>
+    <option value="0">Public School</option>
+    <option value="1">Michael Scott Paper Co</option>
+    <option value="2">Scrantonicity</option>
+    <option value="3">Vance Refigeration</option>
+    <option value="4">Schrute Farms</option>
+    <option value="5">NULL</option>
+  </select>
 </div>
 
-
-<label for="quoteDatalist">Memorable Quotes</label>
 <div class="input-group mb-3">
-<input class="form-control" list="quoteOptions" id="quoteDataList"
-      placeholder="Type to Search/input new without quotations..">
-<datalist id="quoteOptions">
-  <option value="That's what she said">
-  <option value="It is your birthday.">
-  <option value="I'm from the future">
-  <option value="I am Beyonce, always">
-  <option value="How's my favorite branch doing?">
-</datalist>
+  <label class="input-group-text" for="quotes">Memorable Quotes</label>
+  <select class="form-select quotes" id="quotes">
+    <option selected>Choose..</option>
+    <option value="0">"That's what she said"</option>
+    <option value="1">"It is your birthday."</option>
+    <option value="2">"I'm from the future"</option>
+    <option value="3">"How's my favorite branch doing?"</option>
+    <option value="4">NULL</option>
+  </select>
 </div>
 
 <input type="button" class="btn btn-primary button submit" id="addemployee" value="Add"></input>
     </form>
 
     <!--Data Table-->
-    <table class="table table-hover employee" id="employeeTableHead">
-      <thead>
+    <table class="table table-hover employee">
+      <thead id="employeeTableHead">
         <tr>
           <th scope="col">ID</th>
           <th scope="col">First Name</th>
@@ -174,7 +174,6 @@
           <th scope="col">Famous Quote</th>
           <th scope="col">Employment Status</th>
           <th scope="col">Update</th>
-          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tb class="table tablebody" id="employeeTableBod">
@@ -183,32 +182,72 @@
           <td>Example1</td>
           <td>Scott</td>
           <td>Ping</td>
-          <td>Branch Manager</td>
-          <td>Management</td>
+          <td><span class="spanrow1" style="display:Inline;">Branch Manager</span>
+            <div class="input-group mb-3 update1" id="pos##" style="display:None;">
+              <select class="form-select">
+                <option selected>Branch Manager</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
+          <td><span class="spanrow1" style="display:Inline;">Management</span>
+            <div class="input-group mb-3 update1" id="dept##" style="display:None;">
+              <select class="form-select">
+                <option selected>Management</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
           <td>No</td>
           <td>Michael Scott Paper Company</td>
-          <td>"That's what she said"</td>
+          <td><span class="spanrow1" style="display:Inline;">"That's what she said"</span>
+            <div class="input-group mb-3 update1" id="quote##" style="display:None;">
+              <select class="form-select">
+                <option selected>"That's what she said"</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
           <td>Full-Time</td>
-          <td><input type="button" class="tableButton update" value="Update" onclick="unlockEmployee(##)" style="display:inline;">
-              <input type="button" class="tableButton save" value="Save" onclick="updateEmployee(##)" style="display:None;"></td>
-          <td><input type="button" class="tbaleButton delete" id='##' value="Delete" onclick="delEmployee(##)" style="display:inline;">
-              <input type="button" class="tabelButton cancel" id='##' value="Cancel" onclick="lockEmployee(##)" style="display:None;"></td>
+          <td><input type="button" class="tableButton update" id="butUpdate1" value="Update" onclick="unlockEmployee(1)" style="display:inline;">
+              <input type="button" class="tableButton save" id="butSave1" value="Save" onclick="updateEmployee(1)" style="display:None;"></td>
+          <td><input type="button" class="tabelButton cancel" id='butCancel1' value="Cancel" onclick="lockEmployee(1)" style="display:None;"></td>
         </tr>
         <tr scope="col">
           <td>2</td>
           <td>Example 2</td>
           <td>Flax</td>
           <td>Hollygram</td>
-          <td>HR Generalist</td>
-          <td>Human Resources</td>
+          <td><span class="spanrow2" style="display:Inline;">HR Generalist</span>
+            <div class="input-group mb-3 update2" id="pos##" style="display:None;">
+              <select class="form-select">
+                <option selected>HR Generalist</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
+          <td><span class="spanrow2" style="display:Inline;">Human Resources</span>
+            <div class="input-group mb-3 update2" id="dept##" style="display:None;">
+              <select class="form-select">
+                <option selected>Human Resources</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
           <td>No</td>
           <td>No other affiliations</td>
-          <td>"I'm from the future"</td>
+          <td><span class="spanrow2" style="display:Inline;">"I'm from the future"</span>
+            <div class="input-group mb-3 update2" id="quote##" style="display:None;">
+              <select class="form-select">
+                <option selected>"I'm from the future"</option>
+                <option value=0>NULL</option>
+              </select>
+            </div>
+          </td>
           <td>Full-Time</td>
-          <td><input type="button" class="tableButton update" value="Update" onclick="unlockEmployee(##)" style="display:inline;">
-              <input type="button" class="tableButton save" value="Save" onclick="updateEmployee(##)" style="display:None;"></td>
-          <td><input type="button" class="tbaleButton delete" id='##' value="Delete" onclick="delEmployee(##)" style="display:inline;">
-              <input type="button" class="tabelButton cancel" id='##' value="Cancel" onclick="lockEmployee(##)" style="display:None;"></td>
+          <td><input type="button" class="tableButton update" id="butUpdate2" value="Update" onclick="unlockEmployee(2)" style="display:inline;">
+              <input type="button" class="tableButton save" id="butSave2" value="Save" onclick="updateEmployee(2)" style="display:None;"></td>
+          <td><input type="button" class="tabelButton cancel" id='butCancel2' value="Cancel" onclick="lockEmployee(2)" style="display:None;"></td>
         </tr>
 
       </tb>
