@@ -54,13 +54,13 @@
               <a class="nav-link" href="affiliate.html">Affiliates</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="quotes.html">Notable Quotes</a>
+              <a class="nav-link" href="quotes.html">Noteworthy Quotes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
+<span class="actualBod">
     <h2>Employees</h2>
 <br>
     <h3>Add another employee</h3>
@@ -95,7 +95,8 @@
     <option value="5">Quit</option>
   </select>
 </div>
-
+<!-- container start -------------------------------------------------------->
+<span id="employeeFormContainer">
 <div class="input-group mb-3">
   <label class="input-group-text" for="position">Position</label>
   <select class="form-select position" id="position">
@@ -132,19 +133,6 @@
 </div>
 
 <div class="input-group mb-3">
-  <label class="input-group-text" for="affiliates">Affiliates</label>
-  <select class="form-select affiliates" id="affiliates">
-    <option selected>Choose..</option>
-    <option value="0">Public School</option>
-    <option value="1">Michael Scott Paper Co</option>
-    <option value="2">Scrantonicity</option>
-    <option value="3">Vance Refigeration</option>
-    <option value="4">Schrute Farms</option>
-    <option value="5">NULL</option>
-  </select>
-</div>
-
-<div class="input-group mb-3">
   <label class="input-group-text" for="quotes">Memorable Quotes</label>
   <select class="form-select quotes" id="quotes">
     <option selected>Choose..</option>
@@ -155,6 +143,8 @@
     <option value="4">NULL</option>
   </select>
 </div>
+<!-- container end ----------------------------------------------------------->
+</span>
 
 <input type="button" class="btn btn-primary button submit" id="addemployee" value="Add"></input>
     </form>
@@ -170,19 +160,19 @@
           <th scope="col">Position</th>
           <th scope="col">Department</th>
           <th scope="col">Department Head</th>
-          <th scope="col">Affilate</th>
           <th scope="col">Famous Quote</th>
           <th scope="col">Employment Status</th>
           <th scope="col">Update</th>
         </tr>
       </thead>
+      <!-- table container start -------------------------------------------->
       <tb class="table tablebody" id="employeeTableBod">
         <tr scope="col" id="personID##">
           <td>1</td>
           <td>Example1</td>
           <td>Scott</td>
           <td>Ping</td>
-          <td><span class="spanrow1" style="display:Inline;">Branch Manager</span>
+          <td><span class="spanrow1" style="display:inline;">Branch Manager</span>
             <div class="input-group mb-3 update1" id="pos##" style="display:None;">
               <select class="form-select">
                 <option selected>Branch Manager</option>
@@ -190,7 +180,7 @@
               </select>
             </div>
           </td>
-          <td><span class="spanrow1" style="display:Inline;">Management</span>
+          <td><span class="spanrow1" style="display:inline;">Management</span>
             <div class="input-group mb-3 update1" id="dept##" style="display:None;">
               <select class="form-select">
                 <option selected>Management</option>
@@ -199,8 +189,7 @@
             </div>
           </td>
           <td>No</td>
-          <td>Michael Scott Paper Company</td>
-          <td><span class="spanrow1" style="display:Inline;">"That's what she said"</span>
+          <td><span class="spanrow1" style="display:inline;">"That's what she said"</span>
             <div class="input-group mb-3 update1" id="quote##" style="display:None;">
               <select class="form-select">
                 <option selected>"That's what she said"</option>
@@ -218,7 +207,7 @@
           <td>Example 2</td>
           <td>Flax</td>
           <td>Hollygram</td>
-          <td><span class="spanrow2" style="display:Inline;">HR Generalist</span>
+          <td><span class="spanrow2" style="display:inline;">HR Generalist</span>
             <div class="input-group mb-3 update2" id="pos##" style="display:None;">
               <select class="form-select">
                 <option selected>HR Generalist</option>
@@ -226,7 +215,7 @@
               </select>
             </div>
           </td>
-          <td><span class="spanrow2" style="display:Inline;">Human Resources</span>
+          <td><span class="spanrow2" style="display:inline;">Human Resources</span>
             <div class="input-group mb-3 update2" id="dept##" style="display:None;">
               <select class="form-select">
                 <option selected>Human Resources</option>
@@ -235,8 +224,7 @@
             </div>
           </td>
           <td>No</td>
-          <td>No other affiliations</td>
-          <td><span class="spanrow2" style="display:Inline;">"I'm from the future"</span>
+          <td><span class="spanrow2" style="display:inline;">"I'm from the future"</span>
             <div class="input-group mb-3 update2" id="quote##" style="display:None;">
               <select class="form-select">
                 <option selected>"I'm from the future"</option>
@@ -252,7 +240,15 @@
 
       </tb>
     </table>
+</span>
 
+<style>
+.actualBod {
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</style>
 <script>
 
 </script>
