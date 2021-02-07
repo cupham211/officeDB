@@ -59,13 +59,13 @@
                 <a class="nav-link active" href="affiliate.html">Affiliates</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="quotes.html">Notable Quotes</a>
+                <a class="nav-link" href="quotes.html">Noteworthy Quotes</a>
               </li>
             </ul>
           </div>
         </div>
       </nav>
-
+<span class="actualBod">
       <h2>Affiliates</h2>
 <br>
       <h3>Add another affiliate</h3>
@@ -150,7 +150,7 @@
       <br>
       <table class="table table-hover EmpAffRelation">
         <thead id="EmpAffTableHead">
-          <tr>
+          <tr scope="col">
             <th>Employee ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -160,7 +160,7 @@
           </tr>
         </thead>
         <tbody class="table tablebody" id="relationTable">
-          <tr>
+          <tr scope="col">
             <td>1</td>
             <td>David</td>
             <td>Wallis</td>
@@ -168,7 +168,7 @@
             <td>Dunder Mifflin</td>
             <td><input type="button" class="tableButton delete" value="Delete" onclick="delrelation(##)" style="display:inline;"></td>
           </tr>
-          <tr>
+          <tr scope="col">
             <td>2</td>
             <td>Michael</td>
             <td>Scott</td>
@@ -176,7 +176,7 @@
             <td>Dunder Mifflin</td>
             <td><input type="button" class="tableButton delete" value="Delete" onclick="delrelation(##)" style="display:inline;"></td>
           </tr>
-          <tr>
+          <tr scope="col">
             <td>2</td>
             <td>Michael</td>
             <td>Scott</td>
@@ -187,6 +187,8 @@
         </tbody>
       </table>
     </div>
+    <!-- Search Filter source: Bootstrap Filers, (2019), w3schools
+     https://www.w3schools.com/bootstrap/bootstrap_filters.asp -->
 <!-- <p>Note that we start the search in tbody, to prevent filtering the table headers.</p> -->
     <script>
     $(document).ready(function(){
@@ -199,5 +201,14 @@
     });
     </script>
   <br>
+</span>
+
+<style>
+.actualBod {
+  display: block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</style>
   </body>
 </html>
