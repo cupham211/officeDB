@@ -1,21 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-    <script type="text/javascript" src="./employee.js"></script>
-
-    <title>Employees</title>
+    <title>The Office DB Homepage</title>
   </head>
-
   <body>
-    <!-- Nav bar -->
+    <!-- nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">The Office Universe DB</a>
@@ -33,7 +29,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
-              <a class="nav-link active" href="employee.html">Employees</a>
+              <a class="nav-link" href="employee.html">Employees</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="departments.html">Departments</a>
@@ -54,192 +50,24 @@
               <a class="nav-link" href="affiliate.html">Affiliates</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="quotes.html">Notable Quotes</a>
+              <a class="nav-link" href="quotes.html">Noteworthy Quotes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-
-    <h2>Employees</h2>
-<br>
-    <h3>Add another employee</h3>
-    <!--Form-->
-    <form class="form-group w-50" >
-      <div class="input-group mb-3">
-  <span class="input-group-text" id="fName">First Name</span>
-  <input type="text" class="form-control" placeholder="" aria-label="First Name"
-        width="100" required>
-</div>
-
-<div class="input-group mb-3">
-<span class="input-group-text" id="lName">Last Name</span>
-<input type="text" class="form-control" placeholder="" aria-label="Last Name"
-      required>
-</div>
-
-  <div class="input-group mb-3">
-<span class="input-group-text" id="alias">Alias</span>
-<input type="text" class="form-control" placeholder="" aria-label="Alias">
-</div>
-
-<div class="input-group mb-3">
-  <label class="input-group-text" for="employment status">Employment Status</label>
-  <select class="form-select jobStatus" id="status">
-    <option selected>Choose..</option>
-    <option value="0">Full-Time</option>
-    <option value="1">Part-Time</option>
-    <option value="2">Temporary/Contractor</option>
-    <option value="3">Intern</option>
-    <option value="4">Terminated</option>
-    <option value="5">Quit</option>
-  </select>
-</div>
-
-<div class="input-group mb-3">
-  <label class="input-group-text" for="position">Position</label>
-  <select class="form-select position" id="position">
-    <option selected>Choose..</option>
-    <option value="0">Manager</option>
-    <option value="1">HR Generalist</option>
-    <option value="2">Salesman</option>
-    <option value="3">Intern</option>
-    <option value="4">Accountant</option>
-    <option value="5">NULL</option>
-  </select>
-</div>
-
-<div class="input-group mb-3">
-  <label class="input-group-text" for="department">Department</label>
-  <select class="form-select department" id="department">
-    <option selected>Choose..</option>
-    <option value="0">Management</option>
-    <option value="1">Administrative</option>
-    <option value="2">Sales</option>
-    <option value="3">Customer Service</option>
-    <option value="4">Human Resources</option>
-    <option value="5">NULL</option>
-  </select>
-</div>
-
-<div class="input-group mb-3">
-  <label class="input-group-text" for="dept head bool">Department Head</label>
-  <select class="form-select deptHead" id="deptHead">
-    <option selected>Choose..</option>
-    <option value=0>No</option>
-    <option value=1>Yes</option>
-  </select>
-</div>
-
-<div class="input-group mb-3">
-  <label class="input-group-text" for="quotes">Memorable Quotes</label>
-  <select class="form-select quotes" id="quotes">
-    <option selected>Choose..</option>
-    <option value="0">"That's what she said"</option>
-    <option value="1">"It is your birthday."</option>
-    <option value="2">"I'm from the future"</option>
-    <option value="3">"How's my favorite branch doing?"</option>
-    <option value="4">NULL</option>
-  </select>
-</div>
-
-<input type="button" class="btn btn-primary button submit" id="addemployee" value="Add"></input>
-    </form>
-
-    <!--Data Table-->
-    <table class="table table-hover employee">
-      <thead id="employeeTableHead">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Alias</th>
-          <th scope="col">Position</th>
-          <th scope="col">Department</th>
-          <th scope="col">Department Head</th>
-          <th scope="col">Famous Quote</th>
-          <th scope="col">Employment Status</th>
-          <th scope="col">Update</th>
-        </tr>
-      </thead>
-      <tb class="table tablebody" id="employeeTableBod">
-        <tr scope="col" id="personID##">
-          <td>1</td>
-          <td>Example1</td>
-          <td>Scott</td>
-          <td>Ping</td>
-          <td><span class="spanrow1" style="display:Inline;">Branch Manager</span>
-            <div class="input-group mb-3 update1" id="pos##" style="display:None;">
-              <select class="form-select">
-                <option selected>Branch Manager</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td><span class="spanrow1" style="display:Inline;">Management</span>
-            <div class="input-group mb-3 update1" id="dept##" style="display:None;">
-              <select class="form-select">
-                <option selected>Management</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td>No</td>
-          <td><span class="spanrow1" style="display:Inline;">"That's what she said"</span>
-            <div class="input-group mb-3 update1" id="quote##" style="display:None;">
-              <select class="form-select">
-                <option selected>"That's what she said"</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td>Full-Time</td>
-          <td><input type="button" class="tableButton update" id="butUpdate1" value="Update" onclick="unlockEmployee(1)" style="display:inline;">
-              <input type="button" class="tableButton save" id="butSave1" value="Save" onclick="updateEmployee(1)" style="display:None;"></td>
-          <td><input type="button" class="tabelButton cancel" id='butCancel1' value="Cancel" onclick="lockEmployee(1)" style="display:None;"></td>
-        </tr>
-        <tr scope="col">
-          <td>2</td>
-          <td>Example 2</td>
-          <td>Flax</td>
-          <td>Hollygram</td>
-          <td><span class="spanrow2" style="display:Inline;">HR Generalist</span>
-            <div class="input-group mb-3 update2" id="pos##" style="display:None;">
-              <select class="form-select">
-                <option selected>HR Generalist</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td><span class="spanrow2" style="display:Inline;">Human Resources</span>
-            <div class="input-group mb-3 update2" id="dept##" style="display:None;">
-              <select class="form-select">
-                <option selected>Human Resources</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td>No</td>
-          <td><span class="spanrow2" style="display:Inline;">"I'm from the future"</span>
-            <div class="input-group mb-3 update2" id="quote##" style="display:None;">
-              <select class="form-select">
-                <option selected>"I'm from the future"</option>
-                <option value=0>NULL</option>
-              </select>
-            </div>
-          </td>
-          <td>Full-Time</td>
-          <td><input type="button" class="tableButton update" id="butUpdate2" value="Update" onclick="unlockEmployee(2)" style="display:inline;">
-              <input type="button" class="tableButton save" id="butSave2" value="Save" onclick="updateEmployee(2)" style="display:None;"></td>
-          <td><input type="button" class="tabelButton cancel" id='butCancel2' value="Cancel" onclick="lockEmployee(2)" style="display:None;"></td>
-        </tr>
-
-      </tb>
-    </table>
-
-<script>
-
-</script>
-
-</body>
+    <a href="./employee.html">
+  <img src="./the-office-DB-home-1024x768.png" alt="office db homepage">
+  </a>
+  <style>
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  body{
+    background-color: #1a0806;
+  }
+  </style>
+  </body>
 </html>
