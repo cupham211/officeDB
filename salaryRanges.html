@@ -11,11 +11,10 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
-    <title>Salary:SalaryRange</title>
+    <title>SalaryRanges</title>
   </head>
 
   <body>
-
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -32,29 +31,41 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"></li>
+          <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
-              <a href="departments.html">Departments</a>
+              <a class="nav-link" href="index.html">Employees</a>
             </li>
             <li class="nav-item">
-              <a href="positions.html">Positions</a>
+              <a class="nav-link" href="departments.html">Departments</a>
             </li>
             <li class="nav-item">
-              <a href="employee-departments.html">Employee:Departments</a>
+              <a class="nav-link" href="positions.html">Positions</a>
             </li>
             <li class="nav-item">
-              <a href="employee-positions.html">Employee:Positions</a>
+              <a class="nav-link" href="employee-departments.html"
+                >Employee:Departments</a
+              >
             </li>
             <li class="nav-item">
-              <a href="salary-salaryrange.html">Salary:SalaryRange</a>
+              <a class="nav-link" href="employee-positions.html"
+                >Employee:Positions</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="salaryRanges.html">Salary Ranges</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="affiliates.html">Affiliates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="quotes.html">Notable Quotes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <h2>Salary:SalaryRange</h2>
+    <h2>Browse all salary ranges</h2>
     <h3>List of Salary Tiers</h3>
     <!--Form-->
     <form>
@@ -65,11 +76,12 @@
         </div>
       </div>
       <div class="row mb-3">
-        <label for="salaryRange" class="col-sm-2 col-form-label">salaryRange</label>
+        <label for="salaryRange" class="col-sm-2 col-form-label"
+          >salaryRange</label
+        >
         <div class="col-sm-3">
-          <input type="text" class="form-control" id="salaryRange"/>
+          <input type="text" class="form-control" id="salaryRange" />
         </div>
-
       </div>
 
       <button type="button" class="btn btn-primary" onclick="addRow()">
@@ -93,43 +105,43 @@
           <td>1</td>
           <td>27,000-37,000</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>2</td>
           <td>30,210-41,500</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>3</td>
           <td>37,500-50,960</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>4</td>
           <td>40,000-48,739</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>5</td>
           <td>45,000-62,200</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>6</td>
           <td>55,000-62,000</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
         <tr>
           <td>7</td>
           <td>60,000-80,000</td>
           <td>Update</td>
-          <td>x</td>
+          <td>Delete</td>
         </tr>
       </tbody>
     </table>
@@ -144,33 +156,18 @@
         var rowCount = table.rows.length;
         var row = table.insertRow(rowCount);
 
-        row.insertCell(0).innerHTML = salaryID.value;
+        row.insertCell(0).innerHTML = rowCount;
         row.insertCell(1).innerHTML = salaryRange.value;
         row.insertCell(2).innerHTML =
           '<input type="button" value = "Update" onClick=updateRow(this)>';
         row.insertCell(3).innerHTML =
-          '<input type="button" value = "x" onClick=deleteRow(this)>';
+          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
       }
 
       function deleteRow(obj) {
         var index = obj.parentNode.parentNode.rowIndex;
         var table = document.getElementById("myTableData");
         table.deleteRow(index);
-      }
-
-      // updates row
-      function updateRow(obj) {
-        var index = obj.parentNode.parentNode.rowIndex;
-        var table = document.getElementById("myTableData");
-        var first_item = obj.parentNode.parentNode.firstChild;
-        var second_item = obj.parentNode.parentNode.firstChild.nextSibling;
-        first_item.innerHTML = "<input type='number' id='edit'/>"+"<input type='button' value='done' onclick='changeValue(this)'/>"
-        second_item.innerHTML = "<input type='number' id='edit'/>"+"<input type='button' value='done' onclick='changeValue(this)'/>"
-      }
-
-      function changeValue(obj){
-        var changes = document.getElementById('edit').value;
-        obj.parentNode.textContent = changes;
       }
 
     </script>

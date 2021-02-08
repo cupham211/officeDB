@@ -15,8 +15,6 @@
   </head>
 
   <body>
-
-
     <!-- Nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -33,22 +31,34 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"></li>
+          <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
-              <a href="departments.html">Departments</a>
+              <a class="nav-link" href="index.html">Employees</a>
             </li>
             <li class="nav-item">
-              <a href="positions.html">Positions</a>
+              <a class="nav-link" href="departments.html">Departments</a>
             </li>
             <li class="nav-item">
-              <a href="employee-departments.html">Employee:Departments</a>
+              <a class="nav-link active" href="positions.html">Positions</a>
             </li>
             <li class="nav-item">
-              <a href="employee-positions.html">Employee:Positions</a>
+              <a class="nav-link" href="employee-departments.html"
+                >Employee:Departments</a
+              >
             </li>
             <li class="nav-item">
-              <a href="salary-salaryrange.html">Salary:SalaryRange</a>
+              <a class="nav-link" href="employee-positions.html"
+                >Employee:Positions</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="salaryRanges.html">Salary Ranges</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="affiliates.html">Affiliates</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="quotes.html">Notable Quotes</a>
             </li>
           </ul>
         </div>
@@ -116,7 +126,7 @@
         row.insertCell(3).innerHTML =
           '<input type="button" value = "Update" onClick=updateRow(this)>';
         row.insertCell(4).innerHTML =
-          '<input type="button" value = "x" onClick=deleteRow(this)>';
+          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
         count++;
       }
 
@@ -126,10 +136,6 @@
         table.deleteRow(index);
       }
 
-      // need function
-      function updateRow(obj) {
-        alert("Still working on it!");
-      }
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
