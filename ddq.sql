@@ -1,3 +1,4 @@
+-- a) Data Definition Queries
 CREATE TABLE NoteworthyQuotes (
     quoteID INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     catchPhrase varchar(255) NOT NULL,
@@ -59,9 +60,11 @@ CREATE TABLE EmployeeAffiliate (
     PRIMARY KEY (eID, aID)
 );
 
+-- b) Sample Data
 INSERT INTO NoteworthyQuotes (catchPhrase, otherAuthor)
 VALUES
     ('"That''s what she said"', "Wayne Garth"),
+    ('Where are the turtles', NULL),
     ('"You will thank me when they spank thee"', NULL);
 
 INSERT INTO Affiliates (entityName, Industry)
