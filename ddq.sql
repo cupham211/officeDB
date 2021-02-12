@@ -58,3 +58,46 @@ CREATE TABLE EmployeeAffiliate (
         REFERENCES Affiliates(affID),
     PRIMARY KEY (eID, aID)
 );
+
+INSERT INTO NoteworthyQuotes (catchPhrase, otherAuthor)
+VALUES
+    ('"That''s what she said"', "Wayne Garth"),
+    ('"You will thank me when they spank thee"', NULL);
+
+INSERT INTO Affiliates (entityName, Industry)
+VALUES
+    ('Dunder Mifflin', 'Specialty Retail'),
+    ('The Finer Things Club', 'Education'),
+    ('Here Comes Treble', 'Entertainment');
+
+INSERT INTO Departments (deptName, budget, staffCount)
+VALUES
+    ('Management', '150000', '2'),
+    ('Sales', '300000', '6'),
+    ('Product Oversight', '120000', '3'),
+    ('Reception', '40000', '1');
+
+INSERT INTO SalaryRanges (salaryRange)
+VALUES
+    ('27,000-37,000'),
+    ('30,210-41,500'),
+    ('37,500-50,960');
+
+INSERT INTO Positions (title, salaryTier)
+VALUES
+    ('Customer Service', '2'),
+    ('Receptionist', '3'),
+    ('Sales Rep', '5'),
+    ('Regional Manager', '8');
+
+INSERT INTO Employees (fName, lName, alias, positionID, departmentID, employStatus, deptHead, quoteID)
+VALUES
+    ('Pamela', 'Beesley', 'Big Boobz', 6, 4, 'FTE', 1, NULL),
+    ('Andrew', 'Bernard', 'The Nard Dog', 7, 2, 'FTE', 0, 2),
+    ('Kelly', 'Kapoor', NULL, 5, 5, 'FTE', 1, NULL);
+
+INSERT INTO EmployeeAffiliate (eID, aID)
+VALUES
+    (5, 5),
+    (6, 6),
+    (7, 1);
