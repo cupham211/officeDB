@@ -10,6 +10,9 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="./maniTables.js"></script>
+    <script type="text/javascript" src="./ajax.js"></script>
+    <script type="text/javascript" src="./quotes.js"></script>
 
     <title>Noteworthy Quotes</title>
   </head>
@@ -61,24 +64,25 @@
       </div>
     </nav>
 <span class="actualBod">
-    <h2>Noteworthy Quotes</h2>
+    <h2>Notewothy Quotes</h2>
   <br>
     <h3>Add another quote</h3>
     <!--Form-->
-    <form class="form-group w-50">
+    <form class="form-group w-50" id="quoteForm">
       <div class="input-group mb-3">
     <span class="input-group-text" id="catchPhrase">Catch Phrase</span>
-    <input type="text" class="form-control" placeholder="" aria-label="Entity Name"
+    <input type="text" class="form-control" placeholder="Enter a quote without quotation marks" aria-label="quote"
         width="100" required>
     </div>
 
     <div class="input-group mb-3">
     <span class="input-group-text" id="otherAuthor">Other Author</span>
-    <input type="text" class="form-control" placeholder="" aria-label="Industry"
+    <input type="text" class="form-control" placeholder="" aria-label="author"
       required>
     </div>
 
-    <input type="button" class="btn btn-primary button submit" id="addquote" value="Add"></input>
+    <input type="button" class="btn btn-primary button submit" id="addquote"
+      onclick="addQuote()" value="Add"></input>
     </form>
 
     <!--Data Table-->
@@ -90,13 +94,12 @@
           <th scope="col">Other Author</th>
         </tr>
       </thead>
+  <!--container table start------------------------------------------------->
       <tbody class="table tablebody" id="quoteTableBod">
-        <td>1</td>
-        <td>"That's what she said"</td>
-        <td>Wayne Garth</td>
+  <!--container table end------------------------------------------------->
       </tbody>
     </table>
-</span>
+
     <style>
     .actualBod {
       display: block;
