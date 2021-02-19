@@ -22,7 +22,8 @@ FROM Employees;
 SELECT * FROM SalaryRanges;
 
 --Query used to populate employees table
-SELECT Employees.*, Positions.title, Departments.deptName, NoteworthyQuotes.catchPhrase
+SELECT Employees.*, Positions.title, Departments.deptName, NoteworthyQuotes.catchPhrase,
+CASE WHEN deptHead = 1 THEN 'Yes' ELSE 'No' END AS bool
 FROM Employees
 LEFT JOIN Positions ON Employees.positionID = Positions.positionID
 LEFT JOIN Departments ON Employees.departmentID = Departments.deptID
