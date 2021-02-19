@@ -1,8 +1,12 @@
-function unlockEmployee(employeeID) {
-  toggleButtons(employeeID);
+window.onload = (e) => {
+  getReq('employeeFormContainer', '/employee');
+}
 
-  var hideText = document.getElementsByClassName('spanrow'+ employeeID);
-  var locks = document.getElementsByClassName('update'+ employeeID);
+function unlockEmployee(row) {
+  toggleButtons(row);
+
+  var hideText = document.getElementsByClassName('spanrow'+ row);
+  var locks = document.getElementsByClassName('update'+ row);
 
   for (i =0; i<hideText.length; i++){
     hideText[i].style.display = "none";
@@ -12,9 +16,9 @@ function unlockEmployee(employeeID) {
   }
 }
 
-function lockEmployee(employeeID) {
-  var showText = document.getElementsByClassName('spanrow'+ employeeID);
-  var hide = document.getElementsByClassName('update'+ employeeID);
+function lockEmployee(row) {
+  var showText = document.getElementsByClassName('spanrow'+ row);
+  var hide = document.getElementsByClassName('update'+ row);
 
   for (i =0; i<hide.length; i++){
     hide[i].style.display = "none";
@@ -23,18 +27,18 @@ function lockEmployee(employeeID) {
     showText[i].style.display = "inline";
   }
 
-  toggleButtons(employeeID);
+  toggleButtons(row);
 }
 
-function updateEmployee(employeeID) {
+function updateEmployee(row, employeeID) {
   // PUT request to server !!!!!!!!! remove lockEmployee after implementation
-  lockEmployee(employeeID);
+  lockEmployee(row);
 }
 
-function toggleButtons(employeeID) {
-  var updateButt = document.getElementById('butUpdate'+employeeID);
-  var saveButt = document.getElementById('butSave'+employeeID);
-  var cancelButt = document.getElementById('butCancel'+employeeID);
+function toggleButtons(row) {
+  var updateButt = document.getElementById('butUpdate'+row);
+  var saveButt = document.getElementById('butSave'+row);
+  var cancelButt = document.getElementById('butCancel'+row);
 
   if (updateButt.style.display == "inline") {
     updateButt.style.display = "none";
@@ -50,4 +54,25 @@ function toggleButtons(employeeID) {
   cancelButt.style.display = "none";
 } else {cancelButt.style.display = "inline";
   }
+}
+
+function addEmployee() {
+  var empData = {
+    fName: document.getElementById('fName').value,
+    lName: document.getElementById('lName').value,
+    alias: document.getElementById('alias').value,
+    positionID: int(document.getElementById('position').value),
+    deptID: int(document.getElementById('department').value),
+    employStatus: document.getElementById('status').value,
+    quoteID: int(document.getElementById('quotes').value),
+    deptHead: int(document.getElementById('deptHead').value)
+  };
+
+  if (empData.positionID == -1) {empData.positionID = NULL};
+  if (empData.deptID == -1) {empData.deptID = NULL};
+  if (empData.quoteID == -1) {empData.quoteID = NULL};
+  if (empData.alias == '') {empData.alias = 'None'};
+
+  postReq('employeeTableBod', '/employee', empData);
+  document.getElementById('employeeForm').reset();
 }

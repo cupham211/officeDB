@@ -1,8 +1,12 @@
-function unlockaff(affiliateID){
-  toggleButtons(affiliateID);
+window.onload = (e) => {
+  getReq('affTableBod', '/affiliate');
+}
 
-  var hideText = document.getElementsByClassName('affrow'+ affiliateID);
-  var showInput = document.getElementsByClassName('inputrow' + affiliateID);
+function unlockaff(row){
+  toggleButtons(row);
+
+  var hideText = document.getElementsByClassName('affrow'+ row);
+  var showInput = document.getElementsByClassName('inputrow' + row);
 
   for (i=0; i< hideText.length; i++){
     hideText[i].style.display = "none";
@@ -13,21 +17,20 @@ function unlockaff(affiliateID){
   }
 }
 
-function updateaff(affiliateID){
+function updateaff(row, affiliateID){
   // PUT req to server !!! remove this after
-  lockaff(affiliateID);
+  lockaff(row);
 }
 
 function delaff(affiliateID){
   // delete req to server
-  toggleButtons(affiliateID);
 }
 
-function lockaff(affiliateID){
-  toggleButtons(affiliateID);
+function lockaff(row){
+  toggleButtons(row);
 
-  var showText = document.getElementsByClassName('affrow'+ affiliateID);
-  var hideInput = document.getElementsByClassName('inputrow' + affiliateID);
+  var showText = document.getElementsByClassName('affrow'+ row);
+  var hideInput = document.getElementsByClassName('inputrow' + row);
 
   for (i=0; i< hideInput.length; i++){
     hideInput[i].style.display = "none";
@@ -39,11 +42,11 @@ function lockaff(affiliateID){
 
 }
 
-function toggleButtons(affiliateID){
-  var updateButt = document.getElementById('butUpdate'+ affiliateID);
-  var saveButt = document.getElementById('butSave'+ affiliateID);
-  var cancelButt = document.getElementById('butCancel'+ affiliateID);
-  var delButt = document.getElementById('butDel'+ affiliateID);
+function toggleButtons(row){
+  var updateButt = document.getElementById('butUpdate'+ row);
+  var saveButt = document.getElementById('butSave'+ row);
+  var cancelButt = document.getElementById('butCancel'+ row);
+  var delButt = document.getElementById('butDel'+ row);
 
   if (updateButt.style.display == "inline") {
     updateButt.style.display = "none";
@@ -64,4 +67,32 @@ function toggleButtons(affiliateID){
   delButt.style.display = "none";
 } else {delButt.style.display = "inline";
   }
+}
+
+//-------------------------------------------------DELETE RELATIONSHIP
+function delrelation(eID, aID){};
+//-------------------------------------------------DELETE RELATIONSHIP
+
+function addAff(){
+  var affData = {
+    entityName: document.getElementById('entityName').value,
+    industry: document.getElementById('industry').value
+  };
+
+  if (affData.entityName.length == 0 || affData.industry.length == 0) {
+    alert('Affiliate data fields cannot be submitted empty!');
+  };
+
+  postReq('affTableBod', '/affiliate', affData);
+  document.getElementById('affForm').reset();
+}
+
+function addEmpAff() {
+  var empAffData = {
+    eID: int(document.getElementById('empSelect').value),
+    aID: int(document.getElementById('affSelect').value)
+  }
+
+  postReq('relationTable', '/affiliate/empAff', empAffData);
+  document.getElementById('affRelInput').reset();
 }
