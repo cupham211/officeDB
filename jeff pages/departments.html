@@ -64,9 +64,9 @@
         </div>
       </div>
     </nav>
-
+    <span class="actualBod">
     <h2>Browse all departments</h2>
-
+    <br>
     <h3>Add another department</h3>
     <!--Form-->
     <form>
@@ -100,9 +100,8 @@
         </div>
       </div>
 
-      <button type="button" class="btn btn-primary" onclick="addRow()">
-        Add
-      </button>
+      <input type="button" class="btn btn-primary button submit" id="addDepartment"
+      onclick="addDepartment()" value="Add"></input>
     </form>
 
     <!--Data Table-->
@@ -117,44 +116,21 @@
           <th scope="col">Delete</th>
         </tr>
       </thead>
+
+  <!--container table start------------------------------------------------->
+      <tbody class="table tablebody" id="departmentTableBod">
+  <!--container table end------------------------------------------------->
+      </tbody>
     </table>
 
-    <script>
-      var count = 0;
-      function addRow() {
-        // var deptID = document.getElementById("deptID");
-        var deptName = document.getElementById("deptName");
-        var budget = document.getElementById("budget");
-        var staffCount = document.getElementById("staffCount");
-        var table = document.getElementById("myTableData");
-
-        var rowCount = table.rows.length;
-        var row = table.insertRow(rowCount);
-
-        row.insertCell(0).innerHTML = count;
-        row.insertCell(1).innerHTML = deptName.value;
-        row.insertCell(2).innerHTML = budget.value;
-        row.insertCell(3).innerHTML = staffCount.value;
-        row.insertCell(4).innerHTML =
-          '<input type="button" value = "Update" onClick=updateRow(this)>';
-        row.insertCell(5).innerHTML =
-          '<input type="button" value = "Delete" onClick=deleteRow(this)>';
-        count++;
-      }
-
-      function deleteRow(obj) {
-        var index = obj.parentNode.parentNode.rowIndex;
-        var table = document.getElementById("myTableData");
-        table.deleteRow(index);
-      }
-
-      function changeValue(obj) {
-        // var changes = document.getElementById('edit').value;
-        var changes =
-          '<input type="button" value = "Update" onClick=updateRow(this)>';
-        obj.parentNode.innerHTML = changes;
-      }
-    </script>
+    <style>
+    .actualBod {
+      display: block;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    </style>
+    <script></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"

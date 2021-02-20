@@ -61,17 +61,17 @@ function addEmployee() {
     fName: document.getElementById('fName').value,
     lName: document.getElementById('lName').value,
     alias: document.getElementById('alias').value,
-    positionID: int(document.getElementById('position').value),
-    deptID: int(document.getElementById('department').value),
+    positionID: parseInt(document.getElementById('position').value),
+    deptID: parseInt(document.getElementById('department').value),
     employStatus: document.getElementById('status').value,
-    quoteID: int(document.getElementById('quotes').value),
-    deptHead: int(document.getElementById('deptHead').value)
+    quoteID: parseInt(document.getElementById('quotes').value),
+    deptHead: parseInt(document.getElementById('deptHead').value)
   };
 
-  if (empData.positionID == -1) {empData.positionID = NULL};
-  if (empData.deptID == -1) {empData.deptID = NULL};
-  if (empData.quoteID == -1) {empData.quoteID = NULL};
-  if (empData.alias == '') {empData.alias = 'None'};
+  if (empData.positionID == -1) {empData.positionID = null};
+  if (empData.deptID == -1) {empData.deptID = null};
+  if (empData.quoteID == -1) {empData.quoteID = null};
+  if (empData.alias == '') {empData.alias = null};
 
   postReq('employeeTableBod', '/employee', empData);
   document.getElementById('employeeForm').reset();
