@@ -8,20 +8,19 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 // ex: node server.js 3450 --will run on port 3450
 app.set('port', process.argv[2]);
 app.use(CORS());
+app.set('mysql', mysql);
+app.use('/employee', require('./employeeServer.js'));
+app.use('/affiliate', require('./affiliateServer.js'));
+app.use('/quotes', require('./quoteServer.js'));
 
-const getQuotesQuery = 'SELECT * FROM NoteworthyQuotes';
-const getAffQuery = 'SELECT * FROM Affiliates';
-const getPositionsQuery = 'SELECT * FROM Positions';
-const getDeptQuery = 'Select * FROM Departments';
-const getEmployeesQuery = 'Select * FROM Employees';
-const getSalariesQuery = 'Select * FROM Salaries';
+const getSalariesQuery = 'Select * FROM SalaryRanges';
 
-app.get('/quotes',function(req,res,next){
-  mysql.pool.query(getQuotesQuery, function(err, rows, fields){
+app.get('/salaries',function(req,res,next){
+  mysql.pool.query(getSalariesQuery, function(err, rows, fields){
     if(err){
       next(err);
       return;
