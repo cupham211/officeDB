@@ -47,6 +47,9 @@ function postReq(tag, route, inputs) {
       } else if (tag == 'quoteTableBod') {
           destroyTable(tag);
           createQuoteTable(rows.quotes);
+      } else if (tag == 'relationTable'){
+          destroyTable(tag);
+          createEmpAffTable(rows.empAff);
       }
 
     } else {

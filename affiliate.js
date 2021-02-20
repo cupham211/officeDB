@@ -89,8 +89,8 @@ function addAff(){
 
 function addEmpAff() {
   var empAffData = {
-    eID: int(document.getElementById('empSelect').value),
-    aID: int(document.getElementById('affSelect').value)
+    eID: parseInt(document.getElementById('empSelect').value),
+    aID: parseInt(document.getElementById('affSelect').value)
   }
 
   postReq('relationTable', '/affiliate/empAff', empAffData);
