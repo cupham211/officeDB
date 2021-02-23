@@ -70,6 +70,7 @@ app.use(function(err, req, res, next){
   res.render('500');
 });
 //flip2 port 3450
+//flip3 port 8760 (Jeff testing)
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

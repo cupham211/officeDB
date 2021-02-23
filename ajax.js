@@ -41,7 +41,7 @@ function getReq(tag, route) {
     }
   }
   // req.open("GET", "http://flip2.engr.oregonstate.edu:3450" + route, true);
-  req.open("GET", "http://flip3.engr.oregonstate.edu:8756" + route, true);
+  req.open("GET", "http://flip3.engr.oregonstate.edu:8760" + route, true);
   req.send();
 }
 
@@ -91,7 +91,7 @@ function postReq(tag, route, inputs) {
   };
 
   // req.open("POST", 'http://flip2.engr.oregonstate.edu:3450' + route, true);
-  req.open("POST", 'http://flip3.engr.oregonstate.edu:8756' + route, true);
+  req.open("POST", 'http://flip3.engr.oregonstate.edu:8760' + route, true);
   req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
   console.log(inputs);
   req.send(JSON.stringify(inputs));
