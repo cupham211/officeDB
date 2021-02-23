@@ -60,6 +60,26 @@ CREATE TABLE EmployeeAffiliate (
     PRIMARY KEY (eID, aID)
 );
 
+CREATE TABLE EmployeeDepartment (
+    eID INT(11),
+    dID INT(11),
+    FOREIGN KEY (eID)
+        REFERENCES Employees(employeeID),
+    FOREIGN KEY (dID)
+        REFERENCES Departments(deptID),
+    PRIMARY KEY (eID, dID)
+);
+
+CREATE TABLE EmployeePosition (
+    eID INT(11),
+    pID INT(11),
+    FOREIGN KEY (eID)
+        REFERENCES Employees(employeeID),
+    FOREIGN KEY (pID)
+        REFERENCES Positions(positionID),
+    PRIMARY KEY (eID, pID)
+);
+
 -- b) Sample Data
 INSERT INTO NoteworthyQuotes (catchPhrase, otherAuthor)
 VALUES

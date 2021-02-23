@@ -98,6 +98,74 @@ function createEmployeeTable(json){
 
   tableBod.innerHTML += row;
 }
+
+function createDepartmentTable(json) {
+  var tableBod = document.getElementById("departmentTableBod");
+  var row = '';
+  console.log(json);
+  for (i = 0; i < json.length; i++) {
+    row += `<tr scope="col">
+              <td>${json[i].deptID}</td>
+              <td>${json[i].deptName}</td>
+              <td>$${json[i].budget}</td>
+              <td>${json[i].staffCount}</td>
+            </tr>`;
+  }
+  tableBod.innerHTML += row;
+}
+
+function createPositionTable(json) {
+  var tableBod = document.getElementById("positionTableBod");
+  var row = '';
+  console.log(json);
+  for (i = 0; i < json.length; i++) {
+    row += `<tr scope="col">
+                <td>${json[i].positionID}</td>
+                <td>${json[i].title}</td>
+                <td>${json[i].salaryTier}</td>
+            </tr>`;
+  }
+  tableBod.innerHTML += row;
+}
+
+function createSalaryRangeTable(json) {
+  var tableBod = document.getElementById("salaryRangeTableBod");
+  var row = '';
+  console.log(json);
+  for (i = 0; i < json.length; i++) {
+    row += `<tr scope="col">
+                <td>${json[i].salaryID}</td>
+                <td>$${json[i].salaryRange}</td>
+            </tr>`;
+  }
+  tableBod.innerHTML += row;
+}
+
+function createEmpDeptRelation(json) {
+  console.log(json);
+  var tableBod = document.getElementById("empDepTableBod");
+  var row = '';
+  for (i = 0; i < json.length; i++) {
+    row += `<tr scope="col">
+                <td>${json[i].eID}</td>
+                <td>${json[i].dID}</td>
+            </tr>`;
+  }
+  tableBod.innerHTML += row;
+}
+
+function createEmpPosRelation(json) {
+  console.log(json);
+  var tableBod = document.getElementById("empPosTableBod");
+  var row = '';
+  for (i = 0; i < json.length; i++) {
+    row += `<tr scope="col">
+                <td>${json[i].eID}</td>
+                <td>${json[i].pID}</td>
+            </tr>`;
+  }
+  tableBod.innerHTML += row;
+}
 //----------------------------------------------------------------Destroy employee table
 function destroyTable(id){
   document.getElementById(id).innerHTML = '';

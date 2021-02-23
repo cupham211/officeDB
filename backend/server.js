@@ -8,52 +8,56 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 // ex: node server.js 3450 --will run on port 3450
 app.set('port', process.argv[2]);
 app.use(CORS());
+app.set('mysql', mysql);
+app.use('/employee', require('./employeeServer.js'));
+app.use('/affiliate', require('./affiliateServer.js'));
+app.use('/quotes', require('./quoteServer.js'));
+app.use('/departments', require('./departmentServer.js'));
+app.use('/positions', require('./positionServer.js'));
+app.use('/salaryRanges', require('./salaryRangeServer.js'));
+app.use('/employee-departments', require('./employee-departmentServer.js'));
+app.use('/employee-positions', require('./employee-positionServer.js'));
 
-const getQuotesQuery = 'SELECT * FROM NoteworthyQuotes';
-const getAffQuery = 'SELECT * FROM Affiliates';
-const getPositionsQuery = 'SELECT * FROM Positions';
-const getDeptQuery = 'Select * FROM Departments';
-const getEmployeesQuery = 'Select * FROM Employees';
-const getSalariesQuery = 'Select * FROM Salaries';
+// const getSalariesQuery = 'Select * FROM SalaryRanges';
 
-app.get('/quotes',function(req,res,next){
-  mysql.pool.query(getQuotesQuery, function(err, rows, fields){
-    if(err){
-      next(err);
-      return;
-    }
-      res.json({rows});
-  });
-});
+// app.get('/salaries',function(req,res,next){
+//   mysql.pool.query(getSalariesQuery, function(err, rows, fields){
+//     if(err){
+//       next(err);
+//       return;
+//     }
+//       res.json({rows});
+//   });
+// });
 
-app.get('/',function(req,res,next){
-  var context = {};
-  var createString = "CREATE TABLE diagnostic(" +
-  "id INT PRIMARY KEY AUTO_INCREMENT," +
-  "text VARCHAR(255) NOT NULL)";
-  mysql.pool.query('DROP TABLE IF EXISTS diagnostic', function(err){
-    if(err){
-      next(err);
-      return;
-    }
-    mysql.pool.query(createString, function(err){
-      if(err){
-        next(err);
-		return;
-      }
-	  mysql.pool.query('INSERT INTO diagnostic (`text`) VALUES ("MySQL is Working!")',function(err){
-	    mysql.pool.query('SELECT * FROM diagnostic', function(err, rows, fields){
-		  context.results = JSON.stringify(rows);
-		  res.render('home',context);
-		});
-	  });
-    });
-  });
-});
+// app.get('/',function(req,res,next){
+//   var context = {};
+//   var createString = "CREATE TABLE diagnostic(" +
+//   "id INT PRIMARY KEY AUTO_INCREMENT," +
+//   "text VARCHAR(255) NOT NULL)";
+//   mysql.pool.query('DROP TABLE IF EXISTS diagnostic', function(err){
+//     if(err){
+//       next(err);
+//       return;
+//     }
+//     mysql.pool.query(createString, function(err){
+//       if(err){
+//         next(err);
+// 		return;
+//       }
+// 	  mysql.pool.query('INSERT INTO diagnostic (`text`) VALUES ("MySQL is Working!")',function(err){
+// 	    mysql.pool.query('SELECT * FROM diagnostic', function(err, rows, fields){
+// 		  context.results = JSON.stringify(rows);
+// 		  res.render('home',context);
+// 		});
+// 	  });
+//     });
+//   });
+// });
 
 app.use(function(req,res){
   res.status(404);

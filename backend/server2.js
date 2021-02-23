@@ -17,6 +17,8 @@ app.use('/departments', require('./departmentServer.js'));
 app.use('/positions', require('./positionServer.js'));
 app.use('/salaryRanges', require('./salaryRangeServer.js'));
 app.use('/quotes', require('./quoteServer.js'));
+app.use('/employee-departments', require('./employee-departmentServer.js'));
+
 
 app.use(function (req, res) {
   res.status(404);
