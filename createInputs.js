@@ -91,7 +91,7 @@ function createSalaryTierSelector(tag, json) {
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    salaryRange += `<option value="${json[i].salaryID}">"${json[i].salaryRange}"</option>`;
+    salaryRange += `<option value="${json[i].salaryID}">$${json[i].salaryRange}</option>`;
   }
 
   salaryRange += `</option></select></div>`;
