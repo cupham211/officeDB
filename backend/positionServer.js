@@ -10,7 +10,7 @@ module.exports = function () {
                 res.write(JSON.stringify(err));
                 res.end();
             }
-            formInputs.quotes = rows;
+            formInputs.positions = rows;
             complete();
         });
     }
