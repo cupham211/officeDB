@@ -106,12 +106,12 @@ function createDepartmentTable(json) {
   for (i = 0; i < json.length; i++) {
     row += `<tr scope="col">
               <td>${json[i].deptID}</td>
-              <td><span class="deprow${i}" style="display:inline;">${json[i].deptName}</span>
-                <input type="text" class="inputrow${i}" id="${i}deptName" style="display:none;" value="${json[i].deptName}"></td>
-              <td><span class="deprow${i}" style="display:inline;">${json[i].budget}</span>
-                <input type="text" class="inputrow${i}" id="${i}budget" style="display:none;" value="${json[i].budget}"></td>
-              <td><span class="deprow${i}" style="display:inline;">${json[i].staffCount}</span>
-                <input type="text" class="inputrow${i}" id="${i}staffCount" style="display:none;" value="${json[i].staffCount}"></td>
+              <td><span class="depRow${i}" style="display:inline;">${json[i].deptName}</span>
+                <input type="text" class="inputRow${i}" id="${i}deptName" style="display:none;" value="${json[i].deptName}"></td>
+              <td><span class="depRow${i}" style="display:inline;">${json[i].budget}</span>
+                <input type="text" class="inputRow${i}" id="${i}budget" style="display:none;" value="${json[i].budget}"></td>
+              <td><span class="depRow${i}" style="display:inline;">${json[i].staffCount}</span>
+                <input type="text" class="inputRow${i}" id="${i}staffCount" style="display:none;" value="${json[i].staffCount}"></td>
               <td><input type="button" class="tableButton update" id="butUpdate${i}" value="Update" onclick="unlockdep(${i})" style="display:inline;">
                 <input type="button" class="tableButton save" id="butSave${i}" value="Save" onclick="updatedep(${i}, ${json[i].deptID})" style="display:none;"></td>
               <td><input type="button" class="tableButton delete" id="butDel${i}" value="Delete" onclick="deldep(${json[i].deptID})" style="display:inline;">

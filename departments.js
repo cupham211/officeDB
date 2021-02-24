@@ -5,8 +5,8 @@ window.onload = (e) => {
 function unlockdep(row) {
   toggleButtons(row);
 
-  var hideText = document.getElementsByClassName('deprow' + row);
-  var showInput = document.getElementsByClassName('inputrow' + row);
+  var hideText = document.getElementsByClassName('depRow' + row);
+  var showInput = document.getElementsByClassName('inputRow' + row);
 
   for (i = 0; i < hideText.length; i++) {
     hideText[i].style.display = "none";
@@ -29,8 +29,8 @@ function deldep(deptID) {
 function lockdep(row) {
   toggleButtons(row);
 
-  var showText = document.getElementsByClassName('deprow' + row);
-  var hideInput = document.getElementsByClassName('inputrow' + row);
+  var showText = document.getElementsByClassName('depRow' + row);
+  var hideInput = document.getElementsByClassName('inputRow' + row);
 
   for (i = 0; i < hideInput.length; i++) {
     hideInput[i].style.display = "none";

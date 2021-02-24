@@ -102,12 +102,12 @@ function createSalaryTierSelector(tag, json) {
 function createEmployeeIDSelector(tag, json) {
   var formObj = document.getElementById(tag);
   var employeeChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="employeeID">Employee ID</label>
+  <label class="input-group-text" for="employeeID">Employee</label>
     <select class="form-select employeeID" id="employeeID">
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    employeeChoice += `<option value="${json[i].employeeID}">${json[i].employeeID}</option>`;
+    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fName} ${json[i].lName}</option>`;
   }
 
   employeeChoice += `</option></select></div>`;
@@ -118,12 +118,12 @@ function createEmployeeIDSelector(tag, json) {
 function createDepartmentIDSelector(tag, json) {
   var formObj = document.getElementById(tag);
   var departmentChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="deptID">Department ID</label>
+  <label class="input-group-text" for="deptID">Department</label>
     <select class="form-select deptID" id="deptID">
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    departmentChoice += `<option value="${json[i].deptID}">${json[i].deptID}</option>`;
+    departmentChoice += `<option value="${json[i].deptID}">${json[i].deptName}</option>`;
   }
 
   departmentChoice += `</option></select></div>`;
@@ -139,7 +139,7 @@ function createPositionIDSelector(tag, json) {
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    positionChoice += `<option value="${json[i].positionID}">${json[i].positionID}</option>`;
+    positionChoice += `<option value="${json[i].positionID}">${json[i].title}</option>`;
   }
 
   positionChoice += `</option></select></div>`;

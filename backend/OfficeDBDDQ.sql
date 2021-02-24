@@ -110,17 +110,16 @@ INSERT INTO Positions (title, salaryTier)
 VALUES
     ('Customer Service', '2'),
     ('Receptionist', '3'),
-    ('Sales Rep', '5'),
-    ('Regional Manager', '8');
+    ('Sales Rep', '1');
 
 INSERT INTO Employees (fName, lName, alias, positionID, departmentID, employStatus, deptHead, quoteID)
 VALUES
-    ('Pamela', 'Beesley', 'Big Boobz', 6, 4, 'FTE', 1, NULL),
-    ('Andrew', 'Bernard', 'The Nard Dog', 7, 2, 'FTE', 0, 2),
-    ('Kelly', 'Kapoor', NULL, 5, 5, 'FTE', 1, NULL);
+    ('Pamela', 'Beesley', 'Big Boobz', 1, 2, 'FTE', 1, NULL),
+    ('Andrew', 'Bernard', 'The Nard Dog', 2, 2, 'FTE', 0, 2),
+    ('Kelly', 'Kapoor', NULL, 3, 3, 'FTE', 1, NULL);
 
 INSERT INTO EmployeeAffiliate (eID, aID)
 VALUES
-    (5, 5),
-    (6, 6),
-    (7, 1);
+    (1, 1),
+    (3, 2),
+    (2, 3);

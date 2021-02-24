@@ -25,12 +25,10 @@ function getReq(tag, route) {
       } else if (tag == 'salaryRangeTableBod') {
         createSalaryRangeTable(rows.salaryRanges);
       } else if (tag == 'empDepRelation') {
-        console.log(rows);
         createEmployeeIDSelector(tag, rows.employees);
         createDepartmentIDSelector(tag, rows.departments);
         createEmpDeptRelation(rows.empDept);
       } else if (tag == 'empPosRelation') {
-        console.log(rows);
         createEmployeeIDSelector(tag, rows.employees);
         createPositionIDSelector(tag, rows.positions);
         createEmpPosRelation(rows.empPos);
