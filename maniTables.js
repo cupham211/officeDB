@@ -155,8 +155,13 @@ function createEmpDeptRelation(json) {
   for (i = 0; i < json.length; i++) {
     row += `<tr scope="col">
                 <td>${json[i].eID}</td>
+                <td>${json[i].fName} ${json[i].lName}</td>
                 <td>${json[i].dID}</td>
-            </tr>`;
+                <td>${json[i].deptName}</td>
+                <td><input type="button" class="tableButton update" value="Update"</td>
+                <td><input type="button" class="tableButton delete" value="Delete"
+                onclick="delrelation(${json[i].eID}, ${json[i].dID})" style="display:inline;"></td>
+              </tr>`;
   }
   tableBod.innerHTML += row;
 }
@@ -168,8 +173,13 @@ function createEmpPosRelation(json) {
   for (i = 0; i < json.length; i++) {
     row += `<tr scope="col">
                 <td>${json[i].eID}</td>
+                <td>${json[i].fName} ${json[i].lName}</td>
                 <td>${json[i].pID}</td>
-            </tr>`;
+                <td>${json[i].title}</td>
+                <td><input type="button" class="tableButton update" value="Update"</td>
+                <td><input type="button" class="tableButton delete" value="Delete"
+                onclick="delrelation(${json[i].eID}, ${json[i].pID})" style="display:inline;"></td>
+              </tr>`;
   }
   tableBod.innerHTML += row;
 }

@@ -15,4 +15,3 @@ window.onload = (e) => {
     postReq('empDepTableBod', '/employee-departments', empDeptData);
     document.getElementById('empDepRelation').reset();
   }
-  

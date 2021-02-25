@@ -2,9 +2,12 @@ module.exports = function () {
     var express = require('express');
     var router = express.Router();
 
-    const getEmployeesQuery = 'SELECT * FROM Employees';
+    const getEmployeesQuery = 'SELECT employeeID, CONCAT(fName, \' \', lName) AS fullName FROM Employees';
     const getPositionsQuery = 'SELECT * FROM Positions';
-    const getEmpPosQuery = 'SELECT * FROM EmployeePosition';
+    const getEmpPosQuery = `SELECT EmployeePosition.eID, Employees.fName, Employees.lName, EmployeePosition.pID, Positions.title
+    FROM EmployeePosition
+    JOIN Employees ON Employees.employeeID = EmployeePosition.eID
+    JOIN Positions ON Positions.positionID = EmployeePosition.pID`;
 
     function getEmployees(res, mysql, formInputs, complete) {
         mysql.pool.query(getEmployeesQuery, function (err, rows, fields) {

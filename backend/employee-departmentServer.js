@@ -2,9 +2,12 @@ module.exports = function () {
     var express = require('express');
     var router = express.Router();
 
-    const getEmployeesQuery = 'SELECT * FROM Employees';
+    const getEmployeesQuery = 'SELECT employeeID, CONCAT(fName, \' \', lName) AS fullName FROM Employees';
     const getDepartmentsQuery = 'SELECT * FROM Departments';
-    const getEmpDeptQuery = 'SELECT * FROM EmployeeDepartment';
+    const getEmpDeptQuery = `SELECT EmployeeDepartment.eID, Employees.fName, Employees.lName, EmployeeDepartment.dID, Departments.deptName
+    FROM EmployeeDepartment
+    JOIN Employees ON Employees.employeeID = EmployeeDepartment.eID
+    JOIN Departments ON Departments.deptID = EmployeeDepartment.dID`;
 
     function getEmployees(res, mysql, formInputs, complete) {
         mysql.pool.query(getEmployeesQuery, function (err, rows, fields) {
@@ -50,12 +53,12 @@ module.exports = function () {
             } else {
                 var callbackCount = 0;
                 var formInputs = {};
-                getEmployees(res, mysql, formInputs, complete);
-                getDepartments(res, mysql, formInputs, complete);
+                // getEmployees(res, mysql, formInputs, complete);
+                // getDepartments(res, mysql, formInputs, complete);
                 getEmpDept(res, mysql, formInputs, complete);
                 function complete() {
                     callbackCount++;
-                    if (callbackCount >= 3) {
+                    if (callbackCount >= 1) {
                         res.json(formInputs);
                     }
                 }

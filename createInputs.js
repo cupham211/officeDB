@@ -100,15 +100,19 @@ function createSalaryTierSelector(tag, json) {
  
   // --------------------------------------------make the form selection for employee id (emp dept relation and emp pos relation)
 function createEmployeeIDSelector(tag, json) {
+  console.log(json);
   var formObj = document.getElementById(tag);
   var employeeChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="employeeID">Employee</label>
+  <label class="input-group-text" for="employeeID">Employee Name</label>
     <select class="form-select employeeID" id="employeeID">
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fName} ${json[i].lName}</option>`;
+    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fullName}</option>`;
   }
+  // for (i=0; i<json.length; i++) {
+  //   employeeChoice += `<option value="${json[i].employeeID}">${json[i].fullName}</option>`;
+  // }
 
   employeeChoice += `</option></select></div>`;
   formObj.innerHTML += employeeChoice;
@@ -134,7 +138,7 @@ function createDepartmentIDSelector(tag, json) {
 function createPositionIDSelector(tag, json) {
   var formObj = document.getElementById(tag);
   var positionChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="positionID">Position ID</label>
+  <label class="input-group-text" for="positionID">Position</label>
     <select class="form-select positionID" id="positionID">
       <option selected>Select..</option>`;
 
