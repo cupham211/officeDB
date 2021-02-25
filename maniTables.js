@@ -127,9 +127,15 @@ function createPositionTable(json) {
   console.log(json);
   for (i = 0; i < json.length; i++) {
     row += `<tr scope="col">
-                <td>${json[i].positionID}</td>
-                <td>${json[i].title}</td>
-                <td>${json[i].salaryTier}</td>
+              <td>${json[i].positionID}</td>
+              <td><span class="posRow${i}" style="display:inline;">${json[i].title}</span>
+                <input type="text" class="inputRow${i}" id="${i}title" style="display:none;" value="${json[i].title}"></td>
+              <td><span class="posRow${i}" style="display:inline;">${json[i].salaryTier}</span>
+                <input type="text" class="inputRow${i}" id="${i}salaryTier" style="display:none;" value="${json[i].salaryTier}"></td>
+              <td><input type="button" class="tableButton update" id="butUpdate${i}" value="Update" onclick="unlockpos(${i})" style="display:inline;">
+                <input type="button" class="tableButton save" id="butSave${i}" value="Save" onclick="updatepos(${i}, ${json[i].positionID})" style="display:none;"></td>
+              <td><input type="button" class="tableButton delete" id="butDel${i}" value="Delete" onclick="delpos(${json[i].positionID})" style="display:inline;">
+                <input type="button" class="tabelButton cancel" id='butCancel${i}' value="Cancel" onclick="lockpos(${i})" style="display:none;"></td>
             </tr>`;
   }
   tableBod.innerHTML += row;
@@ -141,8 +147,13 @@ function createSalaryRangeTable(json) {
   console.log(json);
   for (i = 0; i < json.length; i++) {
     row += `<tr scope="col">
-                <td>${json[i].salaryID}</td>
-                <td>$${json[i].salaryRange}</td>
+              <td>${json[i].salaryID}</td>
+              <td><span class="salaryRow${i}" style="display:inline;">$${json[i].salaryRange}</span>
+                <input type="text" class="inputRow${i}" id="${i}salaryRange" style="display:none;" value="$${json[i].salaryRange}"></td>
+              <td><input type="button" class="tableButton update" id="butUpdate${i}" value="Update" onclick="unlocksalary(${i})" style="display:inline;">
+                <input type="button" class="tableButton save" id="butSave${i}" value="Save" onclick="updatesalary(${i}, ${json[i].salaryID})" style="display:none;"></td>
+              <td><input type="button" class="tableButton delete" id="butDel${i}" value="Delete" onclick="delsalary(${json[i].salaryID})" style="display:inline;">
+                <input type="button" class="tabelButton cancel" id='butCancel${i}' value="Cancel" onclick="locksalary(${i})" style="display:none;"></td>
             </tr>`;
   }
   tableBod.innerHTML += row;
