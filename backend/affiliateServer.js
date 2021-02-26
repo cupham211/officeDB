@@ -42,6 +42,29 @@ module.exports = function(){
         });
     }
 
+    router.put('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `UPDATE Affiliates SET entityName = ?, industry = ? WHERE affID = ?;`;
+        var values = [req.body.entity, req.body.industry, req.body.affID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getAffiliates(res, mysql, formInputs, complete);
+                getEmpAffTable(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 2){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/', function(req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO Affiliates (entityName, industry) VALUES (?, ?);`;
@@ -64,9 +87,56 @@ module.exports = function(){
         });
     })
 
+    router.delete('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE FROM Affiliates WHERE affID = ?;`;
+        var values = [req.body.affID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getAffiliates(res, mysql, formInputs, complete);
+                getEmpAffTable(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 2){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/empAff', function(req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO EmployeeAffiliate (eID, aID) VALUES (?, ?);`;
+        var values = [req.body.eID, req.body.aID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getEmpAffTable(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
+    router.delete('/empAff', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE EmployeeAffiliate FROM EmployeeAffiliate 
+        INNER JOIN Employees ON Employees.employeeID = EmployeeAffiliate.eID
+        WHERE Employees.employeeID = ? AND EmployeeAffiliate.aID = ?;`;
         var values = [req.body.eID, req.body.aID];
         sql = mysql.pool.query(addq, values, function(err, rows, fields){
             if(err){

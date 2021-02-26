@@ -81,3 +81,67 @@ function createAffiliateSelector(tag, json){
 
   formObj.innerHTML += emp;
  }
+
+ // --------------------------------------------make the form selection for salary tier
+function createSalaryTierSelector(tag, json) {
+  var formObj = document.getElementById(tag);
+  var salaryRange =`<div class="input-group mb-3">
+  <label class="input-group-text" for="salaryTier">Salary Tier</label>
+    <select class="form-select salaryTier" id="salaryTier">
+      <option selected>Select..</option>`;
+
+  for (i=0; i<json.length; i++) {
+    salaryRange += `<option value="${json[i].salaryID}">$${json[i].salaryRange}</option>`;
+  }
+
+  salaryRange += `</option></select></div>`;
+  formObj.innerHTML += salaryRange;
+ }
+
+  // --------------------------------------------make the form selection for employee id (emp dept relation and emp pos relation)
+function createEmployeeIDSelector(tag, json) {
+  var formObj = document.getElementById(tag);
+  var employeeChoice =`<div class="input-group mb-3">
+  <label class="input-group-text" for="employeeID">Employee</label>
+    <select class="form-select employeeID" id="employeeID">
+      <option selected>Select..</option>`;
+
+  for (i=0; i<json.length; i++) {
+    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fName} ${json[i].lName}</option>`;
+  }
+
+  employeeChoice += `</option></select></div>`;
+  formObj.innerHTML += employeeChoice;
+ }
+
+ // --------------------------------------------make the form selection for department id (emp dept relation)
+function createDepartmentIDSelector(tag, json) {
+  var formObj = document.getElementById(tag);
+  var departmentChoice =`<div class="input-group mb-3">
+  <label class="input-group-text" for="deptID">Department</label>
+    <select class="form-select deptID" id="deptID">
+      <option selected>Select..</option>`;
+
+  for (i=0; i<json.length; i++) {
+    departmentChoice += `<option value="${json[i].deptID}">${json[i].deptName}</option>`;
+  }
+
+  departmentChoice += `</option></select></div>`;
+  formObj.innerHTML += departmentChoice;
+ }
+
+ // --------------------------------------------make the form selection for position id (emp position relation)
+function createPositionIDSelector(tag, json) {
+  var formObj = document.getElementById(tag);
+  var positionChoice =`<div class="input-group mb-3">
+  <label class="input-group-text" for="positionID">Position ID</label>
+    <select class="form-select positionID" id="positionID">
+      <option selected>Select..</option>`;
+
+  for (i=0; i<json.length; i++) {
+    positionChoice += `<option value="${json[i].positionID}">${json[i].title}</option>`;
+  }
+
+  positionChoice += `</option></select></div>`;
+  formObj.innerHTML += positionChoice;
+ }

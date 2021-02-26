@@ -20,6 +20,23 @@ function getReq(tag, route) {
           createQuoteTable(rows.quotes);
       }
 
+        else if (tag == 'departmentTableBod') {
+          createDepartmentTable(rows.departments);
+      } else if (tag == 'positionFormContainer') {
+          createSalaryTierSelector(tag, rows.salaryRanges);
+          createPositionTable(rows.positions);
+      } else if (tag == 'salaryRangeTableBod') {
+          createSalaryRangeTable(rows.salaryRanges);
+      } else if (tag == 'empDepRelation') {
+          createEmployeeIDSelector(tag, rows.employees);
+          createDepartmentIDSelector(tag, rows.departments);
+          createEmpDeptRelation(rows.empDept);
+      } else if (tag == 'empPosRelation') {
+          createEmployeeIDSelector(tag, rows.employees);
+          createPositionIDSelector(tag, rows.positions);
+          createEmpPosRelation(rows.empPos);
+      }
+
     } else {
       console.log("Error in network request: " + req.statusText);}
   }
@@ -27,8 +44,8 @@ req.open("GET", "http://flip2.engr.oregonstate.edu:3450"+ route, true);
 req.send();
 }
 
-//-----------------------------------------------------------------Post requests
-function postReq(tag, route, inputs) {
+//-----------------------------------------------------------------Post/Put/Delete requests
+function postPutDelReq(reqType, tag, route, inputs) {
   var req = new XMLHttpRequest();
 
   req.onload = function() {
@@ -36,7 +53,7 @@ function postReq(tag, route, inputs) {
       var rows = JSON.parse(req.responseText);
 
       console.log(rows);
-      if (tag == 'affTableBod') {
+      if (tag == 'affTableBod' && reqType == "POST") {
         destroyTable(tag);
         createAffiliateTable(rows.affiliates);
         document.getElementById('affInput').remove();
@@ -50,6 +67,31 @@ function postReq(tag, route, inputs) {
       } else if (tag == 'relationTable'){
           destroyTable(tag);
           createEmpAffTable(rows.empAff);
+      } else if (tag == 'affTableBod' &&
+      (reqType == "PUT" || reqType == "DELETE")) {
+          destroyTable(tag);
+          createAffiliateTable(rows.affiliates);
+          document.getElementById('affInput').remove();
+          createAffiliateSelector('affRelInput', rows.affiliates);
+          destroyTable('relationTable');
+          createEmpAffTable(rows.empAff);
+      }
+
+        else if (tag == 'departmentTableBod') {
+          destroyTable(tag);
+          createDepartmentTable(rows.departments);
+      } else if (tag == 'positionTableBod') {
+          destroyTable(tag);
+          createPositionTable(rows.positions);
+      } else if (tag == 'salaryRangeTableBod') {
+          destroyTable(tag);
+          createSalaryRangeTable(rows.salaryRanges);
+      } else if (tag == 'empDepTableBod') {
+          destroyTable(tag);
+          createEmpDeptRelation(rows.empDept);
+      } else if (tag == 'empPosTableBod') {
+          destroyTable(tag);
+          createEmpPosRelation(rows.empPos);
       }
 
     } else {
@@ -57,8 +99,8 @@ function postReq(tag, route, inputs) {
     }
 };
 
-    req.open("POST", 'http://flip2.engr.oregonstate.edu:3450'+ route, true);
+    req.open(reqType, 'http://flip2.engr.oregonstate.edu:3450'+ route, true);
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    console.log(inputs);
+
     req.send(JSON.stringify(inputs));
 }

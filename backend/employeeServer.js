@@ -55,12 +55,57 @@ module.exports = function(){
         });
     }
 
+    router.put('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var updateq = `UPDATE Employees SET positionID = ?, departmentID = ?, quoteID = ?
+        WHERE employeeID = ?;`;
+        var values = [req.body.positionID, req.body.departmentID, req.body.quoteID, req.body.empID];
+        sql = mysql.pool.query(updateq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getEmpTable(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/', function(req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO Employees (fName, lName, alias, positionID, departmentID, employStatus, deptHead, quoteID)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
         var values = [req.body.fName, req.body.lName, req.body.alias, req.body.positionID, req.body.deptID, req.body.employStatus, 
             req.body.deptHead, req.body.quoteID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getEmpTable(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
+    router.delete('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE FROM Employees WHERE employeeID = ?;`;
+        var values = [req.body.empID];
         sql = mysql.pool.query(addq, values, function(err, rows, fields){
             if(err){
                 res.write(JSON.stringify(err));

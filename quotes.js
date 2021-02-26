@@ -8,10 +8,14 @@ function addQuote() {
     otherAuthor: document.getElementById('otherAuthor').value
   }
 
-  if (quoteData.catchPhrase.length == 0 || quoteData.otherAuthor.length == 0) {
-    alert('Input fields cannot be empty!');
+  if (quoteData.catchPhrase.length == 0) {
+    alert('Quote field cannot be empty!');
+    return;
   }
+    if (quoteData.otherAuthor.length == 0) {
+      quoteData.otherAuthor = null;
+    }
 
-  postReq('quoteTableBod', '/quotes', quoteData);
+  postPutDelReq("POST", 'quoteTableBod', '/quotes', quoteData);
   document.getElementById('quoteForm').reset();
 }
