@@ -10,7 +10,7 @@ function getReq(tag, route) {
         createPositionSelector(tag, rows.positions);
         createDeptandHeadSelector(tag, rows.depts);
         createQuoteSelector(tag, rows.quotes);
-        createEmployeeTable(rows.employeeTable);
+        createEmployeeTable(rows.employeeTable, rows.positions, rows.depts, rows.quotes);
       } else if (tag == 'affTableBod'){
           createAffiliateTable(rows.affiliates);
           createEmployeeSelector("affRelInput", rows.employees);
@@ -60,7 +60,7 @@ function postPutDelReq(reqType, tag, route, inputs) {
         createAffiliateSelector('affRelInput', rows.affiliates);
       } else if (tag == 'employeeTableBod'){
           destroyTable(tag);
-          createEmployeeTable(rows.employeeTable);
+          createEmployeeTable(rows.employeeTable, rows.positions, rows.depts, rows.quotes);
       } else if (tag == 'quoteTableBod') {
           destroyTable(tag);
           createQuoteTable(rows.quotes);
