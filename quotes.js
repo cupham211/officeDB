@@ -27,11 +27,6 @@ function updatequote(row, quoteID) {
   postPutDelReq('PUT', 'quoteTableBod', '/quotes', putData);
 }
 
-function delquote(quoteID) {
-  var delData = {quoteID: parseInt(quoteID)};
-  postPutDelReq('DELETE', 'quoteTableBod', '/quotes', delData);
-}
-
 function lockquote(row) {
   toggleButtons(row);
 
@@ -49,8 +44,6 @@ function lockquote(row) {
 function toggleButtons(row) {
   var updateButt = document.getElementById('butUpdate' + row);
   var saveButt = document.getElementById('butSave' + row);
-  var cancelButt = document.getElementById('butCancel' + row);
-  var delButt = document.getElementById('butDel' + row);
 
   if (updateButt.style.display == "inline") {
     updateButt.style.display = "none";
@@ -62,18 +55,6 @@ function toggleButtons(row) {
     saveButt.style.display = "none";
   } else {
     saveButt.style.display = "inline";
-  }
-
-  if (cancelButt.style.display == "inline") {
-    cancelButt.style.display = "none";
-  } else {
-    cancelButt.style.display = "inline";
-  }
-
-  if (delButt.style.display == "inline") {
-    delButt.style.display = "none";
-  } else {
-    delButt.style.display = "inline";
   }
 }
 

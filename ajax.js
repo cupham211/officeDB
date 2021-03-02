@@ -10,7 +10,7 @@ function getReq(tag, route) {
         createPositionSelector(tag, rows.positions);
         createDeptandHeadSelector(tag, rows.depts);
         createQuoteSelector(tag, rows.quotes);
-        createEmployeeTable(rows.employeeTable);
+        createEmployeeTable(rows.employeeTable, rows.positions, rows.depts, rows.quotes);
       } else if (tag == 'affTableBod'){
           createAffiliateTable(rows.affiliates);
           createEmployeeSelector("affRelInput", rows.employees);
@@ -38,7 +38,7 @@ function getReq(tag, route) {
     } else {
       console.log("Error in network request: " + req.statusText);}
   }
-  req.open("GET", "http://flip3.engr.oregonstate.edu:8880"+ route, true);
+  req.open("GET", "http://flip3.engr.oregonstate.edu:9581"+ route, true);
   req.send();
 }
 
@@ -58,7 +58,7 @@ function postPutDelReq(reqType, tag, route, inputs) {
         createAffiliateSelector('affRelInput', rows.affiliates);
       } else if (tag == 'employeeTableBod'){
           destroyTable(tag);
-          createEmployeeTable(rows.employeeTable);
+          createEmployeeTable(rows.employeeTable, rows.positions, rows.depts, rows.quotes);
       } else if (tag == 'quoteTableBod') {
           destroyTable(tag);
           createQuoteTable(rows.quotes);
@@ -93,7 +93,7 @@ function postPutDelReq(reqType, tag, route, inputs) {
         console.log("Error in network request: " + req.statusText);
     }
   }
-    req.open(reqType, 'http://flip3.engr.oregonstate.edu:8880'+ route, true);
+    req.open(reqType, 'http://flip3.engr.oregonstate.edu:9581'+ route, true);
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
     req.send(JSON.stringify(inputs));

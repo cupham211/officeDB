@@ -59,28 +59,6 @@ module.exports = function(){
         });
     })
 
-    router.delete('/', function(req, res) {
-        var mysql = req.app.get('mysql');
-        var addq = `DELETE FROM NoteworthyQuotes WHERE quoteID = ?;`;
-        var values = [req.body.quoteID];
-        sql = mysql.pool.query(addq, values, function(err, rows, fields){
-            if(err){
-                res.write(JSON.stringify(err));
-                res.end();
-            } else {
-                var callbackCount = 0;
-                var formInputs = {};
-                getQuotes(res, mysql, formInputs, complete);
-                function complete(){
-                    callbackCount++;
-                    if(callbackCount >= 1){
-                        res.json(formInputs);
-                    }
-                }
-            }
-        });
-    })    
-
     router.get('/', function(req, res){
         var callbackCount = 0;
         var formInputs = {};

@@ -67,10 +67,13 @@ module.exports = function(){
             } else {
                 var callbackCount = 0;
                 var formInputs = {};
+                getPositions(res, mysql, formInputs, complete);
+                getDepts(res, mysql, formInputs, complete);
+                getQuotes(res, mysql, formInputs, complete);
                 getEmpTable(res, mysql, formInputs, complete);
                 function complete(){
                     callbackCount++;
-                    if(callbackCount >= 1){
+                    if(callbackCount >= 4){
                         res.json(formInputs);
                     }
                 }
@@ -89,15 +92,7 @@ module.exports = function(){
                 res.write(JSON.stringify(err));
                 res.end();
             } else {
-                var callbackCount = 0;
-                var formInputs = {};
-                getEmpTable(res, mysql, formInputs, complete);
-                function complete(){
-                    callbackCount++;
-                    if(callbackCount >= 1){
-                        res.json(formInputs);
-                    }
-                }
+                res.redirect('/employee');
             }
         });
     })
@@ -113,10 +108,13 @@ module.exports = function(){
             } else {
                 var callbackCount = 0;
                 var formInputs = {};
+                getPositions(res, mysql, formInputs, complete);
+                getDepts(res, mysql, formInputs, complete);
+                getQuotes(res, mysql, formInputs, complete);
                 getEmpTable(res, mysql, formInputs, complete);
                 function complete(){
                     callbackCount++;
-                    if(callbackCount >= 1){
+                    if(callbackCount >= 4){
                         res.json(formInputs);
                     }
                 }

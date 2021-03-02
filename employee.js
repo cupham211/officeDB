@@ -36,20 +36,17 @@ function updateEmployee(row, employeeID) {
   var dept = document.getElementById(row + 'deptID');
   var quote = document.getElementById(row + 'quoteID');
 
-  if (!pos.options[pos.selectedIndex].value ||
-    Number(pos.options[pos.selectedIndex].value) == -1) {
+  if (!pos || Number(pos.value) == -1) {
     pos = null;
-  } else {pos = Number(pos.options[pos.selectedIndex].value);}
+  } else {pos = Number(pos.value);}
 
-  if (!dept.options[dept.selectedIndex].value ||
-    Number(dept.options[dept.selectedIndex].value) == -1) {
+  if (!dept || Number(dept.value) == -1) {
     dept = null;
-  } else {dept = Number(dept.options[dept.selectedIndex].value);}
+  } else {dept = Number(dept.value);}
 
-  if (isNaN(quote.options[quote.selectedIndex].value) ||
-    Number(quote.options[quote.selectedIndex].value) == -1) {
+  if (isNaN(quote.value) || Number(quote.value) == -1) {
     quote = null;
-  } else {quote = Number(quote.options[quote.selectedIndex].value);}
+  } else {quote = Number(quote.value);}
 
   var putData = {
     empID: parseInt(employeeID),

@@ -76,6 +76,34 @@ SET
     industry = :IndustryInput
 WHERE affID = :affIDInput;
 
+--update a department
+UPDATE Departments
+SET
+    deptName = :deptNameInput,
+    budget = :budgetInput,
+    staffCount = :staffCountInput
+WHERE deptID = :deptIDInput;
+
+--update a position
+UPDATE Positions
+SET
+    title = :titleInput,
+    salaryTier = :salaryTierInput
+WHERE positionID = :positionIDInput;
+
+--update a salary range
+UPDATE SalaryRanges 
+SET 
+    salaryRange = salaryRangeInput 
+WHERE salaryID = :salaryIDInput;
+
+--update a quote
+UPDATE NoteworthyQuotes
+SET
+    catchPhrase = :catchPhraseInput,
+    otherAuthor = :otherAuthorInput
+WHERE quoteID = :quoteIDInput;
+
 --DELETE QUERIES
 --delete M:M relationship from Employee-Affiliates
 DELETE EmployeeAffiliate
@@ -90,3 +118,20 @@ WHERE affID = :affIDInput;
 --delete an employee
 DELETE FROM Employees
 WHERE employeeID = :employeeIDInput;
+
+------
+--delete a department
+DELETE FROM Departments
+WHERE deptID = :deptIDInput;
+
+--delete a position
+DELETE FROM Positions
+WHERE positionID = :positionIDInput;
+
+--delete a salary range
+DELETE FROM SalaryRanges 
+WHERE salaryID = :salaryIDInput;
+
+--delete a quote
+DELETE FROM NoteworthyQuotes
+WHERE quoteID = :quoteIDInput;
