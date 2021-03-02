@@ -38,15 +38,17 @@ CREATE TABLE Employees (
     alias varchar(255),
     positionID INT,
     FOREIGN KEY (positionID)
-        REFERENCES Positions(positionID),
+        REFERENCES Positions(positionID)
+        ON DELETE CASCADE,
     departmentID INT,
     FOREIGN KEY (departmentID)
-        REFERENCES Departments(deptID),
+        REFERENCES Departments(deptID)
+        ON DELETE CASCADE,
     employStatus varchar(255),
     deptHead TINYINT(1),
     quoteID INT,
     FOREIGN KEY (quoteID)
-        REFERENCES NoteworthyQuotes(quoteID),
+        REFERENCES NoteworthyQuotes(quoteID)
 );
 
 CREATE TABLE EmployeeAffiliate (
