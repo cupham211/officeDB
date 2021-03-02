@@ -12,7 +12,7 @@ window.onload = (e) => {
       alert('Input fields cannot be empty!');
     }
   
-    postReq('empPosTableBod', '/employee-positions', empPosData);
+    postPutDelReq("POST", 'empPosTableBod', '/employee-positions', empPosData);
     document.getElementById('empPosRelation').reset();
   }
   

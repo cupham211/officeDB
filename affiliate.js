@@ -18,12 +18,18 @@ function unlockaff(row){
 }
 
 function updateaff(row, affiliateID){
-  // PUT req to server !!! remove this after
-  lockaff(row);
+  var putData = {
+    affID: parseInt(affiliateID),
+    entity: document.getElementById(row + 'entityName').value,
+    industry: document.getElementById(row + 'industry').value
+  };
+
+  postPutDelReq('PUT', 'affTableBod', '/affiliate', putData);
 }
 
 function delaff(affiliateID){
-  // delete req to server
+  var delData = {affID: parseInt(affiliateID)};
+  postPutDelReq('DELETE', 'affTableBod', '/affiliate', delData);
 }
 
 function lockaff(row){
@@ -70,8 +76,38 @@ function toggleButtons(row){
 }
 
 //-------------------------------------------------DELETE RELATIONSHIP
-function delrelation(eID, aID){};
-//-------------------------------------------------DELETE RELATIONSHIP
+function delrelation(eID, aID){
+  var delData = {eID: eID, aID: aID};
+  postPutDelReq("DELETE", 'relationTable', '/affiliate/empAff', delData);
+};
+
+function verifyRelDup(){
+  var relation = 'e' + document.getElementById('empSelect').value
+    + 'a' + document.getElementById('affSelect').value;
+  let relationships = document.getElementsByClassName('checkRelation');
+
+  for (i=0; i<relationships.length; i++){
+    if (relationships[i].innerHTML == relation){
+      alert('Relationship already exists!');
+      return;
+    }
+  }
+  addEmpAff();
+}
+
+function verifyAff(){
+  let affs = document.getElementsByClassName('checkAff');
+  let entity = document.getElementById('entityName').value;
+
+  for (i=0; i< affs.length; i++){
+    if (affs[i].innerHTML.toLowerCase() == entity.toLowerCase()) {
+      alert('Entity already exists!');
+      document.getElementById("affForm").reset();
+      return;
+    }
+  }
+  addAff();
+}
 
 function addAff(){
   var affData = {
@@ -83,7 +119,7 @@ function addAff(){
     alert('Affiliate data fields cannot be submitted empty!');
   };
 
-  postReq('affTableBod', '/affiliate', affData);
+  postPutDelReq("POST", 'affTableBod', '/affiliate', affData);
   document.getElementById('affForm').reset();
 }
 
@@ -93,6 +129,6 @@ function addEmpAff() {
     aID: parseInt(document.getElementById('affSelect').value)
   }
 
-  postReq('relationTable', '/affiliate/empAff', empAffData);
+  postPutDelReq('POST', 'relationTable', '/affiliate/empAff', empAffData);
   document.getElementById('affRelInput').reset();
 }

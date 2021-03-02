@@ -15,6 +15,28 @@ module.exports = function () {
         });
     }
 
+    router.put('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `UPDATE SalaryRanges SET salaryRange = ? WHERE salaryID = ?;`;
+        var values = [req.body.salaryRange, req.body.salaryID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getSalaryRanges(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/', function (req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO SalaryRanges (salaryRange) VALUES (?);`;
@@ -36,6 +58,28 @@ module.exports = function () {
             }
         });
     })
+
+    router.delete('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE FROM SalaryRanges WHERE salaryID = ?;`;
+        var values = [req.body.salaryID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getSalaryRanges(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })    
 
     router.get('/', function (req, res) {
         var callbackCount = 0;

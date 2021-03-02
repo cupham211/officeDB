@@ -9,7 +9,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-// ex: node server.js 3450 --will run on port 3450
+// ex: node server.js 8880 --will run on port 8880
 app.set('port', process.argv[2]);
 app.use(CORS());
 app.set('mysql', mysql);
@@ -22,42 +22,6 @@ app.use('/salaryRanges', require('./salaryRangeServer.js'));
 app.use('/employee-departments', require('./employee-departmentServer.js'));
 app.use('/employee-positions', require('./employee-positionServer.js'));
 
-// const getSalariesQuery = 'Select * FROM SalaryRanges';
-
-// app.get('/salaries',function(req,res,next){
-//   mysql.pool.query(getSalariesQuery, function(err, rows, fields){
-//     if(err){
-//       next(err);
-//       return;
-//     }
-//       res.json({rows});
-//   });
-// });
-
-// app.get('/',function(req,res,next){
-//   var context = {};
-//   var createString = "CREATE TABLE diagnostic(" +
-//   "id INT PRIMARY KEY AUTO_INCREMENT," +
-//   "text VARCHAR(255) NOT NULL)";
-//   mysql.pool.query('DROP TABLE IF EXISTS diagnostic', function(err){
-//     if(err){
-//       next(err);
-//       return;
-//     }
-//     mysql.pool.query(createString, function(err){
-//       if(err){
-//         next(err);
-// 		return;
-//       }
-// 	  mysql.pool.query('INSERT INTO diagnostic (`text`) VALUES ("MySQL is Working!")',function(err){
-// 	    mysql.pool.query('SELECT * FROM diagnostic', function(err, rows, fields){
-// 		  context.results = JSON.stringify(rows);
-// 		  res.render('home',context);
-// 		});
-// 	  });
-//     });
-//   });
-// });
 
 app.use(function(req,res){
   res.status(404);
@@ -69,8 +33,7 @@ app.use(function(err, req, res, next){
   res.status(500);
   res.render('500');
 });
-//flip2 port 3450
-//flip3 port 8760 (Jeff testing)
+//flip2 port 8880
 app.listen(app.get('port'), function(){
   console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

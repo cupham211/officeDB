@@ -31,14 +31,41 @@ function lockEmployee(row) {
 }
 
 function updateEmployee(row, employeeID) {
-  // PUT request to server !!!!!!!!! remove lockEmployee after implementation
-  lockEmployee(row);
+  row = String(row);
+  var pos = document.getElementById(row + 'posID');
+  var dept = document.getElementById(row + 'deptID');
+  var quote = document.getElementById(row + 'quoteID');
+
+  if (!pos.options[pos.selectedIndex].value ||
+    Number(pos.options[pos.selectedIndex].value) == -1) {
+    pos = null;
+  } else {pos = Number(pos.options[pos.selectedIndex].value);}
+
+  if (!dept.options[dept.selectedIndex].value ||
+    Number(dept.options[dept.selectedIndex].value) == -1) {
+    dept = null;
+  } else {dept = Number(dept.options[dept.selectedIndex].value);}
+
+  if (isNaN(quote.options[quote.selectedIndex].value) ||
+    Number(quote.options[quote.selectedIndex].value) == -1) {
+    quote = null;
+  } else {quote = Number(quote.options[quote.selectedIndex].value);}
+
+  var putData = {
+    empID: parseInt(employeeID),
+    positionID: pos,
+    departmentID: dept,
+    quoteID: quote
+  };
+
+  postPutDelReq('PUT', 'employeeTableBod', '/employee', putData);
 }
 
 function toggleButtons(row) {
   var updateButt = document.getElementById('butUpdate'+row);
   var saveButt = document.getElementById('butSave'+row);
   var cancelButt = document.getElementById('butCancel'+row);
+  var delButt = document.getElementById('butDel'+ row);
 
   if (updateButt.style.display == "inline") {
     updateButt.style.display = "none";
@@ -54,9 +81,32 @@ function toggleButtons(row) {
   cancelButt.style.display = "none";
 } else {cancelButt.style.display = "inline";
   }
+
+  if (delButt.style.display == "inline") {
+  delButt.style.display = "none";
+} else {delButt.style.display = "inline";
+  }
+}
+
+function verifyDupEmp() {
+  let employees = document.getElementsByClassName('checkFullName');
+
+  let first = document.getElementById('fName').value;
+  let last = document.getElementById('lName').value;
+
+  for (i=0; i<employees.length; i++){
+    if (employees[i].innerHTML.toLowerCase() ==
+    first.toLowerCase() + ' ' + last.toLowerCase()) {
+      alert('Employee already exists!');
+      document.getElementById('employeeForm').reset();
+      return;
+    }
+  }
+  addEmployee();
 }
 
 function addEmployee() {
+
   var empData = {
     fName: document.getElementById('fName').value,
     lName: document.getElementById('lName').value,
@@ -73,6 +123,11 @@ function addEmployee() {
   if (empData.quoteID == -1) {empData.quoteID = null};
   if (empData.alias == '') {empData.alias = null};
 
-  postReq('employeeTableBod', '/employee', empData);
+  postPutDelReq('POST', 'employeeTableBod', '/employee', empData);
   document.getElementById('employeeForm').reset();
+}
+
+function delEmp(id) {
+  var empData = {empID: id};
+  postPutDelReq('DELETE', 'employeeTableBod', '/employee', empData);
 }

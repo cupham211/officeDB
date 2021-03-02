@@ -18,12 +18,20 @@ function unlockpos(row) {
 }
 
 function updatepos(row, positionID) {
-  // PUT req to server !!! remove this after
-  lockpos(row);
+  var putData = {
+    positionID: parseInt(positionID),
+    title: document.getElementById(row + 'title').value,
+    salaryTier: document.getElementById(row + 'salaryTier').value
+  };
+
+  postPutDelReq('PUT', 'positionTableBod', '/positions', putData);
 }
 
 function delpos(positionID) {
-  // delete req to server
+  var delData = {
+    positionID: parseInt(positionID)
+  };
+  postPutDelReq('DELETE', 'positionTableBod', '/positions', delData);
 }
 
 function lockpos(row) {
@@ -71,6 +79,20 @@ function toggleButtons(row) {
   }
 }
 
+function verifyPos(){
+  var pos = document.getElementsByClassName('checkPos');
+  var title = document.getElementById('title').value;
+
+  for (i=0; i< pos.length; i++){
+    if (pos[i].innerHTML.toLowerCase() == title.toLowerCase()) {
+      alert('Department already exists!');
+      document.getElementById("departmentForm").reset();
+      return;
+    }
+  }
+  addPosition();
+}
+
 function addPosition() {
   var positionData = {
     title: document.getElementById('title').value,
@@ -81,7 +103,7 @@ function addPosition() {
     alert('Input fields cannot be empty!');
   }
 
-  postReq('positionTableBod', '/positions', positionData);
+  postPutDelReq("POST", 'positionTableBod', '/positions', positionData);
   document.getElementById('positionFormContainer').reset();
 }
 

@@ -86,3 +86,7 @@ WHERE Employees.employeeID = :employeeIDInput AND EmployeeAffiliate.aID = :aIDIn
 --delete an affiliate
 DELETE FROM Affiliates 
 WHERE affID = :affIDInput;
+
+--delete an employee
+DELETE FROM Employees
+WHERE employeeID = :employeeIDInput;

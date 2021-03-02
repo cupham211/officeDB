@@ -12,6 +12,6 @@ window.onload = (e) => {
       alert('Input fields cannot be empty!');
     }
   
-    postReq('empDepTableBod', '/employee-departments', empDeptData);
+    postPutDelReq("POST", 'empDepTableBod', '/employee-departments', empDeptData);
     document.getElementById('empDepRelation').reset();
   }

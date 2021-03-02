@@ -82,7 +82,7 @@ function createAffiliateSelector(tag, json){
   formObj.innerHTML += emp;
  }
 
-// --------------------------------------------make the form selection for salary tier
+ // --------------------------------------------make the form selection for salary tier
 function createSalaryTierSelector(tag, json) {
   var formObj = document.getElementById(tag);
   var salaryRange =`<div class="input-group mb-3">
@@ -97,22 +97,18 @@ function createSalaryTierSelector(tag, json) {
   salaryRange += `</option></select></div>`;
   formObj.innerHTML += salaryRange;
  }
- 
+
   // --------------------------------------------make the form selection for employee id (emp dept relation and emp pos relation)
 function createEmployeeIDSelector(tag, json) {
-  console.log(json);
   var formObj = document.getElementById(tag);
   var employeeChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="employeeID">Employee Name</label>
+  <label class="input-group-text" for="employeeID">Employee</label>
     <select class="form-select employeeID" id="employeeID">
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
     employeeChoice += `<option value="${json[i].employeeID}">${json[i].fullName}</option>`;
   }
-  // for (i=0; i<json.length; i++) {
-  //   employeeChoice += `<option value="${json[i].employeeID}">${json[i].fullName}</option>`;
-  // }
 
   employeeChoice += `</option></select></div>`;
   formObj.innerHTML += employeeChoice;
@@ -138,7 +134,7 @@ function createDepartmentIDSelector(tag, json) {
 function createPositionIDSelector(tag, json) {
   var formObj = document.getElementById(tag);
   var positionChoice =`<div class="input-group mb-3">
-  <label class="input-group-text" for="positionID">Position</label>
+  <label class="input-group-text" for="positionID">Position ID</label>
     <select class="form-select positionID" id="positionID">
       <option selected>Select..</option>`;
 

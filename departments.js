@@ -18,12 +18,19 @@ function unlockdep(row) {
 }
 
 function updatedep(row, deptID) {
-  // PUT req to server !!! remove this after
-  lockdep(row);
+  var putData = {
+    deptID: parseInt(deptID),
+    deptName: document.getElementById(row + 'deptName').value,
+    budget: document.getElementById(row + 'budget').value,
+    staffCount: document.getElementById(row + 'staffCount').value
+  };
+
+  postPutDelReq('PUT', 'departmentTableBod', '/departments', putData);
 }
 
 function deldep(deptID) {
-  // delete req to server
+  var delData = {deptID: parseInt(deptID)};
+  postPutDelReq('DELETE', 'departmentTableBod', '/departments', delData);
 }
 
 function lockdep(row) {
@@ -71,6 +78,20 @@ function toggleButtons(row) {
   }
 }
 
+function verifyDep(){
+  var deps = document.getElementsByClassName('checkDep');
+  var deptNames = document.getElementById('deptName').value;
+
+  for (i=0; i< deps.length; i++){
+    if (deps[i].innerHTML.toLowerCase() == deptNames.toLowerCase()) {
+      alert('Department already exists!');
+      document.getElementById("departmentForm").reset();
+      return;
+    }
+  }
+  addDepartment();
+}
+
 function addDepartment() {
   var departmentData = {
     deptName: document.getElementById('deptName').value,
@@ -82,6 +103,6 @@ function addDepartment() {
     alert('Input fields cannot be empty!');
   }
 
-  postReq('departmentTableBod', '/departments', departmentData);
+  postPutDelReq("POST", 'departmentTableBod', '/departments', departmentData);
   document.getElementById('departmentForm').reset();
 }

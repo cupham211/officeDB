@@ -15,6 +15,28 @@ module.exports = function () {
         });
     }
 
+    router.put('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `UPDATE Departments SET deptName = ?, budget = ?, staffCount = ? WHERE deptID = ?;`;
+        var values = [req.body.deptName, req.body.budget, req.body.staffCount, req.body.deptID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getDepartments(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/', function (req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO Departments (deptName, budget, staffCount) VALUES (?, ?, ?);`;
@@ -36,6 +58,28 @@ module.exports = function () {
             }
         });
     })
+
+    router.delete('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE FROM Departments WHERE deptID = ?;`;
+        var values = [req.body.deptID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getDepartments(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })    
 
     router.get('/', function (req, res) {
         var callbackCount = 0;

@@ -27,6 +27,28 @@ module.exports = function () {
         });
     }
 
+    router.put('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `UPDATE Positions SET title = ?, salaryTier = ? WHERE positionID = ?;`;
+        var values = [req.body.title, req.body.salaryTier, req.body.positionID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getPositions(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })
+
     router.post('/', function (req, res) {
         var mysql = req.app.get('mysql');
         var addq = `INSERT INTO Positions (title, salaryTier) VALUES (?, ?);`;
@@ -49,6 +71,28 @@ module.exports = function () {
             }
         });
     })
+    
+    router.delete('/', function(req, res) {
+        var mysql = req.app.get('mysql');
+        var addq = `DELETE FROM Positions WHERE positionID = ?;`;
+        var values = [req.body.positionID];
+        sql = mysql.pool.query(addq, values, function(err, rows, fields){
+            if(err){
+                res.write(JSON.stringify(err));
+                res.end();
+            } else {
+                var callbackCount = 0;
+                var formInputs = {};
+                getPositions(res, mysql, formInputs, complete);
+                function complete(){
+                    callbackCount++;
+                    if(callbackCount >= 1){
+                        res.json(formInputs);
+                    }
+                }
+            }
+        });
+    })    
 
     router.get('/', function (req, res) {
         var callbackCount = 0;

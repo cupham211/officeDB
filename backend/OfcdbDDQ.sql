@@ -46,18 +46,43 @@ CREATE TABLE Employees (
     deptHead TINYINT(1),
     quoteID INT,
     FOREIGN KEY (quoteID)
-        REFERENCES NoteworthyQuotes(quoteID),
-    CONSTRAINT fullName UNIQUE (fName, lName)
+        REFERENCES NoteworthyQuotes(quoteID)
 );
 
 CREATE TABLE EmployeeAffiliate (
     eID INT(11),
     aID INT(11),
     FOREIGN KEY (eID)
-        REFERENCES Employees(employeeID),
+        REFERENCES Employees(employeeID)
+        ON DELETE CASCADE,
     FOREIGN KEY (aID)
-        REFERENCES Affiliates(affID),
+        REFERENCES Affiliates(affID)
+        ON DELETE CASCADE,
     PRIMARY KEY (eID, aID)
+);
+
+CREATE TABLE EmployeeDepartment (
+    eID INT(11),
+    dID INT(11),
+    FOREIGN KEY (eID)
+        REFERENCES Employees(employeeID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (dID)
+        REFERENCES Departments(deptID)
+        ON DELETE CASCADE,
+    PRIMARY KEY (eID, dID)
+);
+
+CREATE TABLE EmployeePosition (
+    eID INT(11),
+    pID INT(11),
+    FOREIGN KEY (eID)
+        REFERENCES Employees(employeeID)
+        ON DELETE CASCADE,
+    FOREIGN KEY (pID)
+        REFERENCES Positions(positionID)
+        ON DELETE CASCADE,
+    PRIMARY KEY (eID, pID)
 );
 
 -- b) Sample Data
@@ -90,17 +115,16 @@ INSERT INTO Positions (title, salaryTier)
 VALUES
     ('Customer Service', '2'),
     ('Receptionist', '3'),
-    ('Sales Rep', '5'),
-    ('Regional Manager', '8');
+    ('Sales Rep', '1');
 
 INSERT INTO Employees (fName, lName, alias, positionID, departmentID, employStatus, deptHead, quoteID)
 VALUES
-    ('Pamela', 'Beesley', 'Big Boobz', 6, 4, 'FTE', 1, NULL),
-    ('Andrew', 'Bernard', 'The Nard Dog', 7, 2, 'FTE', 0, 2),
-    ('Kelly', 'Kapoor', NULL, 5, 5, 'FTE', 1, NULL);
+    ('Pamela', 'Beesley', 'Big Boobz', 1, 2, 'FTE', 1, NULL),
+    ('Andrew', 'Bernard', 'The Nard Dog', 2, 2, 'FTE', 0, 2),
+    ('Kelly', 'Kapoor', NULL, 3, 3, 'FTE', 1, NULL);
 
 INSERT INTO EmployeeAffiliate (eID, aID)
 VALUES
-    (5, 5),
-    (6, 6),
-    (7, 1);
+    (1, 1),
+    (3, 2),
+    (2, 3);

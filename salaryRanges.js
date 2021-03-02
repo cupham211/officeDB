@@ -2,10 +2,10 @@ window.onload = (e) => {
   getReq('salaryRangeTableBod', '/salaryRanges');
 }
 
-function unlocksalary(row) {
+function unlocksalrange(row) {
   toggleButtons(row);
 
-  var hideText = document.getElementsByClassName('salaryRow' + row);
+  var hideText = document.getElementsByClassName('salrangeRow' + row);
   var showInput = document.getElementsByClassName('inputRow' + row);
 
   for (i = 0; i < hideText.length; i++) {
@@ -17,19 +17,24 @@ function unlocksalary(row) {
   }
 }
 
-function updatesalary(row, salaryID) {
-  // PUT req to server !!! remove this after
-  locksalary(row);
+function updatesalrange(row, salaryID) {
+  var putData = {
+    salaryID: parseInt(salaryID),
+    salaryRange: document.getElementById(row + 'salaryRange').value
+  };
+
+  postPutDelReq('PUT', 'salaryRangeTableBod', '/salaryRanges', putData);
 }
 
-function delsalary(salaryID) {
-  // delete req to server
+function delsalrange(salaryID) {
+  var delData = {salaryID: parseInt(salaryID)};
+  postPutDelReq('DELETE', 'salaryRangeTableBod', '/salaryRanges', delData);
 }
 
-function locksalary(row) {
+function locksalrange(row) {
   toggleButtons(row);
 
-  var showText = document.getElementsByClassName('salaryRow' + row);
+  var showText = document.getElementsByClassName('salrangeRow' + row);
   var hideInput = document.getElementsByClassName('inputRow' + row);
 
   for (i = 0; i < hideInput.length; i++) {
@@ -71,6 +76,20 @@ function toggleButtons(row) {
   }
 }
 
+function verifySalRange(){
+  var sals = document.getElementsByClassName('checkSalRange');
+  var salRanges = document.getElementById('salaryRange').value;
+
+  for (i=0; i< sals.length; i++){
+    if (sals[i].innerHTML.toLowerCase() == salRanges.toLowerCase()) {
+      alert('Salary Range already exists!');
+      document.getElementById("salaryRangeForm").reset();
+      return;
+    }
+  }
+  addSalaryRange();
+}
+
 
 function addSalaryRange() {
   var salaryRangeData = {
@@ -81,6 +100,6 @@ function addSalaryRange() {
     alert('Input fields cannot be empty!');
   }
 
-  postReq('salaryRangeTableBod', '/salaryRanges', salaryRangeData);
+  postPutDelReq("POST", 'salaryRangeTableBod', '/salaryRanges', salaryRangeData);
   document.getElementById('salaryRangeForm').reset();
 }
