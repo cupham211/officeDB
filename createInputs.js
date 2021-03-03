@@ -107,7 +107,7 @@ function createEmployeeIDSelector(tag, json) {
       <option selected>Select..</option>`;
 
   for (i=0; i<json.length; i++) {
-    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fName} ${json[i].lName}</option>`;
+    employeeChoice += `<option value="${json[i].employeeID}">${json[i].fullName}</option>`;
   }
 
   employeeChoice += `</option></select></div>`;

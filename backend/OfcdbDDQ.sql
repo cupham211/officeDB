@@ -67,9 +67,11 @@ CREATE TABLE EmployeeDepartment (
     eID INT(11),
     dID INT(11),
     FOREIGN KEY (eID)
-        REFERENCES Employees(employeeID),
+        REFERENCES Employees(employeeID)
+        ON DELETE CASCADE,
     FOREIGN KEY (dID)
-        REFERENCES Departments(deptID),
+        REFERENCES Departments(deptID)
+        ON DELETE CASCADE,
     PRIMARY KEY (eID, dID)
 );
 
@@ -77,9 +79,11 @@ CREATE TABLE EmployeePosition (
     eID INT(11),
     pID INT(11),
     FOREIGN KEY (eID)
-        REFERENCES Employees(employeeID),
+        REFERENCES Employees(employeeID)
+        ON DELETE CASCADE,
     FOREIGN KEY (pID)
-        REFERENCES Positions(positionID),
+        REFERENCES Positions(positionID)
+        ON DELETE CASCADE,
     PRIMARY KEY (eID, pID)
 );
 

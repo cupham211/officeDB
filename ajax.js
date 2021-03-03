@@ -18,9 +18,7 @@ function getReq(tag, route) {
           createEmpAffTable(rows.empAff);
       } else if (tag == 'quoteTableBod'){
           createQuoteTable(rows.quotes);
-      }
-
-        else if (tag == 'departmentTableBod') {
+      } else if (tag == 'departmentTableBod') {
           createDepartmentTable(rows.departments);
       } else if (tag == 'positionFormContainer') {
           createSalaryTierSelector(tag, rows.salaryRanges);
@@ -40,8 +38,8 @@ function getReq(tag, route) {
     } else {
       console.log("Error in network request: " + req.statusText);}
   }
-req.open("GET", "http://flip2.engr.oregonstate.edu:3450"+ route, true);
-req.send();
+  req.open("GET", "http://flip3.engr.oregonstate.edu:9581"+ route, true);
+  req.send();
 }
 
 //-----------------------------------------------------------------Post/Put/Delete requests
@@ -67,17 +65,14 @@ function postPutDelReq(reqType, tag, route, inputs) {
       } else if (tag == 'relationTable'){
           destroyTable(tag);
           createEmpAffTable(rows.empAff);
-      } else if (tag == 'affTableBod' &&
-      (reqType == "PUT" || reqType == "DELETE")) {
+      } else if (tag == 'affTableBod' && (reqType == "PUT" || reqType == "DELETE")) {
           destroyTable(tag);
           createAffiliateTable(rows.affiliates);
           document.getElementById('affInput').remove();
           createAffiliateSelector('affRelInput', rows.affiliates);
           destroyTable('relationTable');
           createEmpAffTable(rows.empAff);
-      }
-
-        else if (tag == 'departmentTableBod') {
+      } else if (tag == 'departmentTableBod') {
           destroyTable(tag);
           createDepartmentTable(rows.departments);
       } else if (tag == 'positionTableBod') {
@@ -97,9 +92,8 @@ function postPutDelReq(reqType, tag, route, inputs) {
     } else {
         console.log("Error in network request: " + req.statusText);
     }
-};
-
-    req.open(reqType, 'http://flip2.engr.oregonstate.edu:3450'+ route, true);
+  }
+    req.open(reqType, 'http://flip3.engr.oregonstate.edu:9581'+ route, true);
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
     req.send(JSON.stringify(inputs));
