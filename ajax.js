@@ -38,14 +38,17 @@ function getReq(tag, route) {
     } else {
       console.log("Error in network request: " + req.statusText);}
   }
-  req.open("GET", "http://flip3.engr.oregonstate.edu:9581"+ route, true);
+  req.open("GET", "http://flip3.engr.oregonstate.edu:9989"+ route, true);
   req.send();
 }
 
 //-----------------------------------------------------------------Post/Put/Delete requests
 function postPutDelReq(reqType, tag, route, inputs) {
   var req = new XMLHttpRequest();
-
+    // console.log(reqType);
+    // console.log(tag);
+    // console.log(route);
+    // console.log(inputs);
   req.onload = function() {
     if (req.status >= 200 && req.status < 400) {
       var rows = JSON.parse(req.responseText);
@@ -93,7 +96,7 @@ function postPutDelReq(reqType, tag, route, inputs) {
         console.log("Error in network request: " + req.statusText);
     }
   }
-    req.open(reqType, 'http://flip3.engr.oregonstate.edu:9581'+ route, true);
+    req.open(reqType, 'http://flip3.engr.oregonstate.edu:9989'+ route, true);
     req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
     req.send(JSON.stringify(inputs));

@@ -82,9 +82,9 @@ function addQuote() {
     alert('Quote field cannot be empty!');
     return;
   }
-    if (quoteData.otherAuthor.length == 0) {
-      quoteData.otherAuthor = null;
-    }
+  if (quoteData.otherAuthor.length == 0) {
+    quoteData.otherAuthor = null;
+  }
 
   postPutDelReq("POST", 'quoteTableBod', '/quotes', quoteData);
   document.getElementById('quoteForm').reset();

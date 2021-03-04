@@ -98,8 +98,8 @@ function addSalaryRange() {
 
   if (salaryRangeData.salaryRange.length == 0) {
     alert('Input fields cannot be empty!');
-  }
-
+  } else {
   postPutDelReq("POST", 'salaryRangeTableBod', '/salaryRanges', salaryRangeData);
   document.getElementById('salaryRangeForm').reset();
+  }
 }

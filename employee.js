@@ -120,10 +120,14 @@ function addEmployee() {
   if (empData.quoteID == -1) {empData.quoteID = null};
   if (empData.alias == '') {empData.alias = null};
 
+  
+  if (empData.fName.length == 0 || empData.lName.length == 0 || empData.alias.length == 0) {
+    alert('Input fields cannot be empty!');
+  } else {
   postPutDelReq('POST', 'employeeTableBod', '/employee', empData);
   document.getElementById('employeeForm').reset();
 }
-
+}
 function delEmp(id) {
   var empData = {empID: id};
   postPutDelReq('DELETE', 'employeeTableBod', '/employee', empData);

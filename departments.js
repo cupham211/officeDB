@@ -29,7 +29,7 @@ function updatedep(row, deptID) {
 }
 
 function deldep(deptID) {
-  var delData = {deptID: parseInt(deptID)};
+  var delData = { deptID: parseInt(deptID) };
   postPutDelReq('DELETE', 'departmentTableBod', '/departments', delData);
 }
 
@@ -78,11 +78,11 @@ function toggleButtons(row) {
   }
 }
 
-function verifyDep(){
+function verifyDep() {
   var deps = document.getElementsByClassName('checkDep');
   var deptNames = document.getElementById('deptName').value;
 
-  for (i=0; i< deps.length; i++){
+  for (i = 0; i < deps.length; i++) {
     if (deps[i].innerHTML.toLowerCase() == deptNames.toLowerCase()) {
       alert('Department already exists!');
       document.getElementById("departmentForm").reset();
@@ -101,8 +101,8 @@ function addDepartment() {
 
   if (departmentData.deptName.length == 0 || departmentData.budget.length == 0 || departmentData.staffCount.length == 0) {
     alert('Input fields cannot be empty!');
+  } else {
+    postPutDelReq("POST", 'departmentTableBod', '/departments', departmentData);
+    document.getElementById('departmentForm').reset();
   }
-
-  postPutDelReq("POST", 'departmentTableBod', '/departments', departmentData);
-  document.getElementById('departmentForm').reset();
 }

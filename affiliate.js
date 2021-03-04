@@ -117,18 +117,22 @@ function addAff(){
 
   if (affData.entityName.length == 0 || affData.industry.length == 0) {
     alert('Affiliate data fields cannot be submitted empty!');
-  };
+  } else {
 
   postPutDelReq("POST", 'affTableBod', '/affiliate', affData);
   document.getElementById('affForm').reset();
+  }
 }
 
 function addEmpAff() {
   var empAffData = {
-    eID: parseInt(document.getElementById('empSelect').value),
-    aID: parseInt(document.getElementById('affSelect').value)
+    eID: document.getElementById('empSelect').value,
+    aID: document.getElementById('affSelect').value
   }
-
-  postPutDelReq('POST', 'relationTable', '/affiliate/empAff', empAffData);
-  document.getElementById('affRelInput').reset();
+  if (empAffData.eID == "Choose.." || empAffData.aID == "Choose..") {
+    alert('Cannot be submitted empty!');
+  } else {
+    postPutDelReq('POST', 'relationTable', '/affiliate/empAff', empAffData);
+    document.getElementById('affRelInput').reset();
+  }
 }

@@ -85,8 +85,8 @@ function verifyPos(){
 
   for (i=0; i< pos.length; i++){
     if (pos[i].innerHTML.toLowerCase() == title.toLowerCase()) {
-      alert('Department already exists!');
-      document.getElementById("departmentForm").reset();
+      alert('Position already exists!');
+      document.getElementById("positionFormContainer").reset();
       return;
     }
   }
@@ -99,11 +99,13 @@ function addPosition() {
     salaryTier: document.getElementById('salaryTier').value
   }
 
-  if (positionData.title.length == 0 || positionData.salaryTier.length == 0) {
+  if (positionData.title.length == 0) {
     alert('Input fields cannot be empty!');
-  }
-
+  } 
+  else if (positionData.title.length != 0 && positionData.salaryTier == "Select..")  { 
+      alert('Please select a salary tier!');
+  } else {
   postPutDelReq("POST", 'positionTableBod', '/positions', positionData);
   document.getElementById('positionFormContainer').reset();
+  }
 }
-
