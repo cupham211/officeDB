@@ -3,18 +3,18 @@ window.onload = (e) => {
   }
   
   function verifyEmpDepRelation(){
-    var quotes = document.getElementsByClassName('checkQuote');
-    var catchPhrase = document.getElementById('catchPhrase').value;
-  
-    for (i=0; i< quotes.length; i++){
-      if (quotes[i].innerHTML.toLowerCase() == catchPhrase.toLowerCase()) {
-        alert('Quote already exists!');
-        document.getElementById("quoteForm").reset();
-        return;
+      var relation = 'e' + document.getElementById('employeeID').value
+        + 'd' + document.getElementById('deptID').value;
+      let relationships = document.getElementsByClassName('checkRelation');
+    
+      for (i=0; i<relationships.length; i++){
+        if (relationships[i].innerHTML == relation){
+          alert('Relationship already exists!');
+          return;
+        }
       }
+      addEmpDepRelation();
     }
-    addQuote();
-  }
 
   function addEmpDepRelation() {
     var empDeptData = {
