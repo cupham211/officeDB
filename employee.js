@@ -117,6 +117,7 @@ function addEmployee() {
 
   if (empData.positionID == -1) {empData.positionID = null};
   if (empData.deptID == -1) {empData.deptID = null};
+  if (empData.employStatus == "Choose..") {empData.employStatus = null};
   if (empData.quoteID == -1) {empData.quoteID = null};
   if (empData.alias == '') {empData.alias = null};
 
