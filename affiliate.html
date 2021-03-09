@@ -72,7 +72,7 @@
       <h2>Affiliates</h2>
 <br>
       <h3>Add another affiliate</h3>
-      <!--Form-->
+      <!--Form inserts a new affiliate into Affiliate schema-->
     <form class="form-group w-50" id="affForm">
           <div class="input-group mb-3">
       <span class="input-group-text">Entity Name</span>
@@ -102,6 +102,7 @@
           </tr>
         </thead>
         <!-- container start -------------------------------------------------------->
+        <!-- displays Affiliates with all CRUD functionality ------------------------------------>
         <tbody class="table tablebody" id="affTableBod">
       <!-- container end -------------------------------------------------------->
         </tbody>
@@ -109,6 +110,7 @@
       <br>
 <h3>Create Relationship</h3>
 <!-- container start -------------------------------------------------------->
+<!-- creates M:M relationship between Employees:Affiliates -------------------------------->
 <form class="form-group w-50" id="affRelInput">
 <!-- container end -------------------------------------------------------->
   </form>
@@ -134,6 +136,7 @@
           </tr>
         </thead>
         <!-- container start for empaff table --------------------------------->
+        <!-- displays Employee:Affiliate table with full CRUD functionality------------------------->
         <tbody class="table tablebody" id="relationTable">
     <!-- container end -------------------------------------------------------->
         </tbody>
