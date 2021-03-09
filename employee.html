@@ -68,7 +68,7 @@
     <h2>Employees</h2>
 <br>
     <h3>Add another employee</h3>
-    <!--Form-->
+    <!--Form creates relationships between Employees and positions, departments, and quotes-->
     <form class="form-group w-50" id="employeeForm">
       <div class="input-group mb-3">
   <span class="input-group-text">First Name</span>
@@ -100,6 +100,7 @@
   </select>
 </div>
 <!-- container start -------------------------------------------------------->
+<!-- dynamically populate form if new entries added to other entities ----------------->
 <span id="employeeFormContainer">
 <!-- container end ----------------------------------------------------------->
 </span>
@@ -125,6 +126,8 @@
         </tr>
       </thead>
       <!-- table container start -------------------------------------------->
+      <!-- full CRUD implementation between employees to pos, dept, quotes; a M:1 relationship for employees:pos, & employees:depts ------------->
+      <!-- a 1:M implementation from employees:quotes; relationships are nullable------------------------------------>
       <tbody class="table tablebody" id="employeeTableBod">
       <!-- table container end ---------------------------------------------->
     </tbody>
