@@ -39,9 +39,10 @@ module.exports = function () {
                 var callbackCount = 0;
                 var formInputs = {};
                 getPositions(res, mysql, formInputs, complete);
+                getSalaryRanges(res, mysql, formInputs, complete);
                 function complete(){
                     callbackCount++;
-                    if(callbackCount >= 1){
+                    if(callbackCount >= 2){
                         res.json(formInputs);
                     }
                 }
@@ -84,9 +85,10 @@ module.exports = function () {
                 var callbackCount = 0;
                 var formInputs = {};
                 getPositions(res, mysql, formInputs, complete);
+                getSalaryRanges(res, mysql, formInputs, complete);
                 function complete(){
                     callbackCount++;
-                    if(callbackCount >= 1){
+                    if(callbackCount >= 2){
                         res.json(formInputs);
                     }
                 }

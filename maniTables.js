@@ -142,22 +142,54 @@ function createDepartmentTable(json){
   tableBod.innerHTML += row;
 }
 
-function createPositionTable(json){
+// function createPositionTable(json){
+//   var tableBod = document.getElementById('positionTableBod');
+//   var row = '';
+
+//   for (i=0; i<json.length; i++){
+//     row += `<tr scope="col" id="${i}${json[i].positionID}">
+//       <td>${json[i].positionID}</td>
+//       <td><span class="checkPos posRow${i}" style="display:inline;">${json[i].title}</span>
+//         <input type="text" class="inputRow${i}" id="${i}title" style="display:none;" value="${json[i].title}">
+//       </td>
+//       <td><span class="posRow${i}" style="display:inline;">${json[i].salaryTier}</span>
+//         <input type="number" class="inputRow${i}" id="${i}salaryTier" style="display:none;" value="${json[i].salaryTier}">
+//       </td>
+//       <td><input type="button" class="btn btn-outline-primary update" id="butUpdate${i}" value="Update" onclick="unlockpos(${i})" style="display:inline;">
+//           <input type="button" class="btn btn-outline-primary save" id="butSave${i}" value="Save" onclick="updatepos(${i}, ${json[i].positionID})" style="display:none;"></td>
+//       <td><input type="button" class="btn btn-outline-primary delete" id="butDel${i}" value="Delete" onclick="delpos(${json[i].positionID})" style="display:inline;">
+//         <input type="button" class="btn btn-outline-primary cancel" id='butCancel${i}' value="Cancel" onclick="lockpos(${i})" style="display:none;"></td>
+//     </tr>`;
+//   }
+//   tableBod.innerHTML += row;
+// }
+
+function createPositionTable(pos, sal){
+  console.log("here");
+  console.log(sal);
   var tableBod = document.getElementById('positionTableBod');
   var row = '';
 
-  for (i=0; i<json.length; i++){
-    row += `<tr scope="col" id="${i}${json[i].positionID}">
-      <td>${json[i].positionID}</td>
-      <td><span class="checkPos posRow${i}" style="display:inline;">${json[i].title}</span>
-        <input type="text" class="inputRow${i}" id="${i}title" style="display:none;" value="${json[i].title}">
+  for (i=0; i<pos.length; i++){
+    row += `<tr scope="col" id="${i}${pos[i].positionID}">
+      <td>${pos[i].positionID}</td>
+      <td><span class="checkPos posRow${i}" style="display:inline;">${pos[i].title}</span>
+        <input type="text" class="inputRow${i}" id="${i}title" style="display:none;" value="${pos[i].title}">
       </td>
-      <td><span class="posRow${i}" style="display:inline;">${json[i].salaryTier}</span>
-        <input type="number" class="inputRow${i}" id="${i}salaryTier" style="display:none;" value="${json[i].salaryTier}">
+      <td><span class="posRow${i}"  style="display:inline;">${pos[i].salaryTier}</span>
+      <select class="inputRow${i}" style="display:none;" id="${i}salaryTier">
+        <option value="${pos[i].salaryTier}" selected>${pos[i].salaryTier}</option>`;
+        for (j=0; j<sal.length; j++){
+          if (pos[i].salaryTier != sal[j].salaryID) {
+            row += `<option value="${sal[j].salaryID}">${sal[j].salaryID}</option>`;
+          }
+        }
+      row +=  `
+          </select>
       </td>
       <td><input type="button" class="btn btn-outline-primary update" id="butUpdate${i}" value="Update" onclick="unlockpos(${i})" style="display:inline;">
-          <input type="button" class="btn btn-outline-primary save" id="butSave${i}" value="Save" onclick="updatepos(${i}, ${json[i].positionID})" style="display:none;"></td>
-      <td><input type="button" class="btn btn-outline-primary delete" id="butDel${i}" value="Delete" onclick="delpos(${json[i].positionID})" style="display:inline;">
+          <input type="button" class="btn btn-outline-primary save" id="butSave${i}" value="Save" onclick="updatepos(${i}, ${pos[i].positionID})" style="display:none;"></td>
+      <td><input type="button" class="btn btn-outline-primary delete" id="butDel${i}" value="Delete" onclick="delpos(${pos[i].positionID})" style="display:inline;">
         <input type="button" class="btn btn-outline-primary cancel" id='butCancel${i}' value="Cancel" onclick="lockpos(${i})" style="display:none;"></td>
     </tr>`;
   }
