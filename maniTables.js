@@ -142,28 +142,6 @@ function createDepartmentTable(json){
   tableBod.innerHTML += row;
 }
 
-// function createPositionTable(json){
-//   var tableBod = document.getElementById('positionTableBod');
-//   var row = '';
-
-//   for (i=0; i<json.length; i++){
-//     row += `<tr scope="col" id="${i}${json[i].positionID}">
-//       <td>${json[i].positionID}</td>
-//       <td><span class="checkPos posRow${i}" style="display:inline;">${json[i].title}</span>
-//         <input type="text" class="inputRow${i}" id="${i}title" style="display:none;" value="${json[i].title}">
-//       </td>
-//       <td><span class="posRow${i}" style="display:inline;">${json[i].salaryTier}</span>
-//         <input type="number" class="inputRow${i}" id="${i}salaryTier" style="display:none;" value="${json[i].salaryTier}">
-//       </td>
-//       <td><input type="button" class="btn btn-outline-primary update" id="butUpdate${i}" value="Update" onclick="unlockpos(${i})" style="display:inline;">
-//           <input type="button" class="btn btn-outline-primary save" id="butSave${i}" value="Save" onclick="updatepos(${i}, ${json[i].positionID})" style="display:none;"></td>
-//       <td><input type="button" class="btn btn-outline-primary delete" id="butDel${i}" value="Delete" onclick="delpos(${json[i].positionID})" style="display:inline;">
-//         <input type="button" class="btn btn-outline-primary cancel" id='butCancel${i}' value="Cancel" onclick="lockpos(${i})" style="display:none;"></td>
-//     </tr>`;
-//   }
-//   tableBod.innerHTML += row;
-// }
-
 function createPositionTable(pos, sal){
   console.log("here");
   console.log(sal);
@@ -203,7 +181,7 @@ function createSalaryRangeTable(json){
   for (i=0; i<json.length; i++){
     row += `<tr scope="col" id="${i}${json[i].salaryID}">
       <td>${json[i].salaryID}</td>
-      <td><span class="checkSalRange salrangeRow${i}" style="display:inline;">${json[i].salaryRange}</span>
+      <td><span class="checkSalRange salrangeRow${i}" style="display:inline;">$${json[i].salaryRange}</span>
         <input type="text" class="inputRow${i}" id="${i}salaryRange" style="display:none;" value="${json[i].salaryRange}">
       </td>
       <td><input type="button" class="btn btn-outline-primary update" id="butUpdate${i}" value="Update" onclick="unlocksalrange(${i})" style="display:inline;">
@@ -230,21 +208,6 @@ function createEmpDeptRelation(json){
   }
   tableBod.innerHTML += row;
 }
-
-// function createEmpPosRelation(json) {
-//   console.log(json);
-//   var tableBod = document.getElementById("empPosTableBod");
-//   var row = '';
-//   for (i = 0; i < json.length; i++) {
-//     row += `<tr scope="col">
-//                 <td>${json[i].eID}</td>
-//                 <td>${json[i].fName} ${json[i].lName}</td>
-//                 <td>${json[i].pID}</td>
-//                 <td>${json[i].title}</td>
-//               </tr>`;
-//   }
-//   tableBod.innerHTML += row;
-// }
 
 function createEmpPosRelation(json) {
   var tableBod = document.getElementById("empPosTableBod");

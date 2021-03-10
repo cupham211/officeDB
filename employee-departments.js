@@ -1,3 +1,4 @@
+// Did not use in final submission
 window.onload = (e) => {
     getReq('empDepRelation', '/employee-departments');
   }
